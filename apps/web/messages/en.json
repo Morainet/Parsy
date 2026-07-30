@@ -1,0 +1,200 @@
+{
+  "site": {
+    "name": "Parsy",
+    "tagline": "Fast, private, local-first JSON tools for developers",
+    "description": "A modern, high-performance, local-first online JSON toolkit. Format, minify, and validate JSON instantly in your browser — your data is never uploaded to a server.",
+    "footerPrivacy": "Your data never leaves your browser",
+    "footerLicense": "MIT · Next.js 15"
+  },
+  "nav": {
+    "main": "Main",
+    "github": "View source on GitHub",
+    "comingSoon": "{name} — coming soon"
+  },
+  "language": {
+    "label": "Language",
+    "zh": "简体中文",
+    "en": "English"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "tools": {
+    "json-formatter": {
+      "title": "JSON Formatter",
+      "short": "Formatter",
+      "description": "Beautify, validate, and explore JSON with instant syntax highlighting."
+    },
+    "json-validator": {
+      "title": "JSON Validator",
+      "short": "Validator",
+      "description": "Check JSON for syntax errors with precise line and column reporting."
+    },
+    "json-minifier": {
+      "title": "JSON Minifier",
+      "short": "Minifier",
+      "description": "Compress JSON to a single line — strip whitespace and shrink payload size."
+    },
+    "json-tree": {
+      "title": "JSON Tree Viewer",
+      "description": "Expand, collapse, search nested JSON, and copy paths. Coming soon."
+    },
+    "json-diff": {
+      "title": "JSON Diff",
+      "description": "Compare two JSON documents side by side and highlight every difference. Coming soon."
+    },
+    "json-repair": {
+      "title": "JSON Repair",
+      "description": "Fix single quotes, trailing commas, comments, and other loose JSON. Coming soon."
+    },
+    "json-converter": {
+      "title": "JSON to Code",
+      "description": "Generate TypeScript, Java, Kotlin, Go, and more from JSON. Coming soon."
+    }
+  },
+  "home": {
+    "badge": "Local-first · 100% private",
+    "heroTitle": "The fast, private way to",
+    "heroTitleAccent": "work with JSON",
+    "heroSubtitle": "Format, minify, and validate JSON instantly. Everything runs in your browser — your data is never uploaded to a server.",
+    "ctaPrimary": "Start formatting",
+    "ctaSecondary": "Validate JSON",
+    "trustLine": "No sign-up · No upload · Open source",
+    "openTool": "Open tool",
+    "comingSoon": "Coming soon",
+    "sections": {
+      "toolsTitle": "Everything you need for JSON",
+      "toolsSubtitle": "Three live tools today, with more on the way. Pick one to get started.",
+      "whyTitle": "Why"
+    },
+    "pillars": {
+      "fast": {
+        "title": "Blazing fast",
+        "desc": "Heavy JSON runs in a Web Worker, so multi-megabyte files stay smooth."
+      },
+      "private": {
+        "title": "Private by design",
+        "desc": "No accounts, no uploads, no telemetry. Your JSON never leaves the page."
+      },
+      "precise": {
+        "title": "Precise errors",
+        "desc": "Validation pinpoints the exact line and column of any syntax problem."
+      }
+    },
+    "why": {
+      "privacy": {
+        "title": "Privacy first",
+        "body": "There is no backend that stores your data. The app is a static front end — JSON is processed entirely on your device."
+      },
+      "developers": {
+        "title": "Built for developers",
+        "body": "Powered by the Monaco editor — the same engine behind VS Code — with proper syntax highlighting and a real keyboard experience."
+      },
+      "free": {
+        "title": "Always free",
+        "body": "No paywalls, no usage limits, no ads. Open source under the MIT license."
+      }
+    }
+  },
+  "tool": {
+    "modes": {
+      "format": "Format",
+      "minify": "Minify",
+      "validate": "Validate"
+    },
+    "toolbar": {
+      "format": "Format",
+      "formatTip": "Beautify",
+      "minify": "Minify",
+      "minifyTip": "Compress",
+      "validate": "Validate",
+      "validateTip": "Check",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "download": "Download",
+      "clear": "Clear",
+      "sample": "Sample",
+      "indent": "Indent",
+      "indentLabel": "Indentation",
+      "indent2": "2 spaces",
+      "indent4": "4 spaces",
+      "indentTab": "Tab"
+    },
+    "panes": {
+      "input": "Input",
+      "output": "Output"
+    },
+    "run": "Run primary action",
+    "status": {
+      "processing": "Processing…",
+      "valid": "Valid JSON",
+      "invalid": "Invalid JSON",
+      "idle": "Idle",
+      "input": "Input",
+      "output": "Output",
+      "time": "Time",
+      "chars": "chars",
+      "lineCol": "(L{line}:C{column})"
+    },
+    "empty": {
+      "outputHere": "Output appears here",
+      "outputHint": "Paste or type JSON on the left, then hit Format, Minify, or Validate.",
+      "validJson": "Valid JSON",
+      "validHint": "No syntax errors detected.",
+      "invalidJson": "Invalid JSON",
+      "seeLine": " · see line {line} in the input"
+    },
+    "toast": {
+      "formatted": "Formatted successfully",
+      "formatFailed": "Could not format",
+      "minified": "Minified",
+      "minifyFailed": "Could not minify",
+      "valid": "Valid JSON",
+      "validDetail": "{count} characters",
+      "invalid": "Invalid JSON",
+      "invalidDetail": "Line {line}, column {column}",
+      "copied": "Copied to clipboard",
+      "copyFailed": "Copy failed",
+      "downloaded": "Downloaded formatted.json",
+      "cleared": "Cleared",
+      "minifiedDetail": "{before} → {after}"
+    },
+    "downloadFilename": "formatted.json"
+  },
+  "editor": {
+    "loading": "Loading editor…",
+    "inputAria": "JSON input",
+    "outputAria": "JSON output",
+    "defaultAria": "JSON editor"
+  },
+  "errors": {
+    "unexpected_eof": "Unexpected end of input — the JSON is truncated or missing a closing bracket/brace.",
+    "unexpected_token": "Unexpected token — this character is not valid in the current position.",
+    "trailing_comma": "Expected a property name or '}' — there may be a trailing comma or a missing key.",
+    "missing_colon": "Expected ':' after a property name — a colon is missing.",
+    "control_char": "Invalid control character inside a string — unescaped newline/tab?",
+    "unquoted_key": "Property names must be wrapped in double quotes.",
+    "empty": "Input is empty.",
+    "unknown": "Invalid JSON."
+  },
+  "metadata": {
+    "home": {
+      "title": "Parsy — Fast, private, local-first JSON tools",
+      "description": "Format, minify, and validate JSON instantly in your browser. Local-first — your data never leaves your device."
+    },
+    "formatter": {
+      "title": "JSON Formatter — Beautify & Indent JSON Online",
+      "description": "Format and beautify JSON instantly with 2-space, 4-space, or tab indentation. 100% in your browser — your data is never uploaded."
+    },
+    "validator": {
+      "title": "JSON Validator — Check JSON Syntax with Line & Column",
+      "description": "Validate JSON and pinpoint syntax errors with exact line and column numbers. 100% local — your data never leaves your browser."
+    },
+    "minifier": {
+      "title": "JSON Minifier — Compress JSON Online",
+      "description": "Minify JSON to a single line by stripping all whitespace. Shrink payload size for APIs and storage. 100% in your browser."
+    }
+  }
+}

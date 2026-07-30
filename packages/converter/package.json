@@ -1,0 +1,25 @@
+{
+  "name": "@parsy/converter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JSON → code converters (Java, Kotlin, Swift, TypeScript, Go, Rust, C#, Dart). Scaffold only — implementation lands in Sprint 4.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": ["src"],
+  "scripts": {
+    "lint": "echo \"(converter) lint: no-op\"",
+    "typecheck": "tsc --noEmit",
+    "clean": "echo \"(converter) nothing to clean\""
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

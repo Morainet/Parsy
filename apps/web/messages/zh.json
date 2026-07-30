@@ -1,0 +1,200 @@
+{
+  "site": {
+    "name": "Parsy",
+    "tagline": "快速、私密、本地优先的 JSON 开发者工具",
+    "description": "一个现代化、高性能、本地优先的 JSON 在线开发者工具。在浏览器中即时格式化、压缩和校验 JSON —— 你的数据永远不会上传到服务器。",
+    "footerPrivacy": "你的数据永不离开浏览器",
+    "footerLicense": "MIT · Next.js 15"
+  },
+  "nav": {
+    "main": "主导航",
+    "github": "在 GitHub 上查看源码",
+    "comingSoon": "{name} —— 即将上线"
+  },
+  "language": {
+    "label": "语言",
+    "zh": "简体中文",
+    "en": "English"
+  },
+  "theme": {
+    "toggle": "切换主题",
+    "light": "浅色模式",
+    "dark": "深色模式"
+  },
+  "tools": {
+    "json-formatter": {
+      "title": "JSON 格式化",
+      "short": "格式化",
+      "description": "即时语法高亮，美化、校验并探索 JSON。"
+    },
+    "json-validator": {
+      "title": "JSON 校验",
+      "short": "校验",
+      "description": "检查 JSON 语法错误，精确定位到行与列。"
+    },
+    "json-minifier": {
+      "title": "JSON 压缩",
+      "short": "压缩",
+      "description": "把 JSON 压缩为单行——去除空白，缩小数据体积。"
+    },
+    "json-tree": {
+      "title": "JSON 树形查看器",
+      "description": "展开、折叠、搜索嵌套 JSON 并复制路径。即将上线。"
+    },
+    "json-diff": {
+      "title": "JSON 对比",
+      "description": "并排对比两份 JSON，高亮所有差异。即将上线。"
+    },
+    "json-repair": {
+      "title": "JSON 修复",
+      "description": "修复单引号、多余逗号、注释等不规范 JSON。即将上线。"
+    },
+    "json-converter": {
+      "title": "JSON 转代码",
+      "description": "从 JSON 生成 TypeScript、Java、Kotlin、Go 等。即将上线。"
+    }
+  },
+  "home": {
+    "badge": "本地优先 · 100% 私密",
+    "heroTitle": "快速、私密地",
+    "heroTitleAccent": "处理 JSON",
+    "heroSubtitle": "即时格式化、压缩、校验 JSON。一切都在你的浏览器中运行——数据永不上传到服务器。",
+    "ctaPrimary": "开始格式化",
+    "ctaSecondary": "校验 JSON",
+    "trustLine": "无需注册 · 不上传 · 开源",
+    "openTool": "打开工具",
+    "comingSoon": "即将上线",
+    "sections": {
+      "toolsTitle": "你需要的 JSON 工具都在这里",
+      "toolsSubtitle": "三个工具现已上线，更多即将推出。选一个开始吧。",
+      "whyTitle": "为什么选择"
+    },
+    "pillars": {
+      "fast": {
+        "title": "极速",
+        "desc": "繁重的 JSON 处理在 Web Worker 中运行，即使数 MB 的文件也保持流畅。"
+      },
+      "private": {
+        "title": "天生私密",
+        "desc": "无账号、无上传、无埋点。你的 JSON 永不离开当前页面。"
+      },
+      "precise": {
+        "title": "精准报错",
+        "desc": "校验能精确定位任何语法问题的确切行与列。"
+      }
+    },
+    "why": {
+      "privacy": {
+        "title": "隐私优先",
+        "body": "没有存储你数据的后端。这是一个纯静态前端——JSON 完全在你的设备上处理。"
+      },
+      "developers": {
+        "title": "为开发者而生",
+        "body": "由 Monaco 编辑器驱动——与 VS Code 同款引擎——具备完善的语法高亮和真正的键盘体验。"
+      },
+      "free": {
+        "title": "永久免费",
+        "body": "没有付费墙、没有用量限制、没有广告。基于 MIT 协议开源。"
+      }
+    }
+  },
+  "tool": {
+    "modes": {
+      "format": "格式化",
+      "minify": "压缩",
+      "validate": "校验"
+    },
+    "toolbar": {
+      "format": "格式化",
+      "formatTip": "美化",
+      "minify": "压缩",
+      "minifyTip": "压缩",
+      "validate": "校验",
+      "validateTip": "检查",
+      "copy": "复制",
+      "copied": "已复制！",
+      "download": "下载",
+      "clear": "清空",
+      "sample": "示例",
+      "indent": "缩进",
+      "indentLabel": "缩进",
+      "indent2": "2 空格",
+      "indent4": "4 空格",
+      "indentTab": "制表符"
+    },
+    "panes": {
+      "input": "输入",
+      "output": "输出"
+    },
+    "run": "执行主操作",
+    "status": {
+      "processing": "处理中…",
+      "valid": "JSON 有效",
+      "invalid": "JSON 无效",
+      "idle": "空闲",
+      "input": "输入",
+      "output": "输出",
+      "time": "耗时",
+      "chars": "字符",
+      "lineCol": "（第 {line} 行:第 {column} 列）"
+    },
+    "empty": {
+      "outputHere": "输出将显示在这里",
+      "outputHint": "在左侧粘贴或输入 JSON，然后点击格式化、压缩或校验。",
+      "validJson": "JSON 有效",
+      "validHint": "未检测到语法错误。",
+      "invalidJson": "JSON 无效",
+      "seeLine": " · 查看输入中的第 {line} 行"
+    },
+    "toast": {
+      "formatted": "格式化成功",
+      "formatFailed": "无法格式化",
+      "minified": "已压缩",
+      "minifyFailed": "无法压缩",
+      "valid": "JSON 有效",
+      "validDetail": "{count} 个字符",
+      "invalid": "JSON 无效",
+      "invalidDetail": "第 {line} 行，第 {column} 列",
+      "copied": "已复制到剪贴板",
+      "copyFailed": "复制失败",
+      "downloaded": "已下载 formatted.json",
+      "cleared": "已清空",
+      "minifiedDetail": "{before} → {after}"
+    },
+    "downloadFilename": "formatted.json"
+  },
+  "editor": {
+    "loading": "编辑器加载中…",
+    "inputAria": "JSON 输入",
+    "outputAria": "JSON 输出",
+    "defaultAria": "JSON 编辑器"
+  },
+  "errors": {
+    "unexpected_eof": "输入意外结束——JSON 被截断，或缺少闭合的方括号/大括号。",
+    "unexpected_token": "出现意外的字符——该字符在当前位置不合法。",
+    "trailing_comma": "缺少属性名或 '}'——可能有多余的逗号或缺少键名。",
+    "missing_colon": "属性名后缺少 ':'——缺少冒号。",
+    "control_char": "字符串内有非法控制字符——可能是未转义的换行/制表符？",
+    "unquoted_key": "属性名必须用双引号包裹。",
+    "empty": "输入为空。",
+    "unknown": "JSON 无效。"
+  },
+  "metadata": {
+    "home": {
+      "title": "Parsy —— 快速、私密、本地优先的 JSON 工具",
+      "description": "在浏览器中即时格式化、压缩和校验 JSON。本地优先——你的数据永不离开你的设备。"
+    },
+    "formatter": {
+      "title": "JSON 格式化 —— 在线美化与缩进 JSON",
+      "description": "即时格式化、美化 JSON，支持 2 空格、4 空格或制表符缩进。100% 在浏览器中——你的数据永不丢失。"
+    },
+    "validator": {
+      "title": "JSON 校验 —— 精确定位行与列的语法检查",
+      "description": "校验 JSON，精确定位语法错误的行与列。100% 本地——你的数据永不离开浏览器。"
+    },
+    "minifier": {
+      "title": "JSON 压缩 —— 在线压缩 JSON",
+      "description": "去除所有空白，将 JSON 压缩为单行，缩小 API 与存储的数据体积。100% 在浏览器中。"
+    }
+  }
+}

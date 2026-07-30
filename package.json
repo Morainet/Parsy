@@ -1,0 +1,23 @@
+{
+  "name": "parsy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Parsy — a modern, high-performance, local-first JSON developer toolkit.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.7.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "clean": "turbo clean && rimraf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5.7.0",
+    "rimraf": "^6.0.0"
+  }
+}

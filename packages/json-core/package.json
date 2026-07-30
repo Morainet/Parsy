@@ -1,0 +1,25 @@
+{
+  "name": "@parsy/json-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-agnostic JSON processing primitives: format, minify, validate.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": ["src"],
+  "scripts": {
+    "lint": "echo \"(json-core) lint: no-op\"",
+    "typecheck": "tsc --noEmit",
+    "clean": "echo \"(json-core) nothing to clean\""
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}
