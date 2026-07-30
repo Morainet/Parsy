@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
  * the user scrolls, so it reads as floating over content rather than a flat bar.
  */
 export function SiteHeader() {
+  const tNav = useTranslations("nav");
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -46,7 +47,7 @@ export function SiteHeader() {
           <Tooltip>
             <TooltipTrigger asChild>
               <a
-                href="https://github.com/Morainet"
+                href="https://github.com/Morainet/Parsy"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -55,7 +56,7 @@ export function SiteHeader() {
                 <Github className="h-[18px] w-[18px]" />
               </a>
             </TooltipTrigger>
-            <TooltipContent>GitHub</TooltipContent>
+            <TooltipContent>{tNav("github")}</TooltipContent>
           </Tooltip>
 
           <ThemeToggle />
