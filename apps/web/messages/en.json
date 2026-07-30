@@ -4,7 +4,9 @@
     "tagline": "Fast, private, local-first JSON tools for developers",
     "description": "A modern, high-performance, local-first online JSON toolkit. Format, minify, and validate JSON instantly in your browser — your data is never uploaded to a server.",
     "footerPrivacy": "Your data never leaves your browser",
-    "footerLicense": "MIT · Next.js 15"
+    "footerLicense": "MIT · Next.js 15",
+    "byOrg": "Built by {org}",
+    "orgVerified": "A Morainet verified project"
   },
   "nav": {
     "main": "Main",

@@ -4,7 +4,9 @@
     "tagline": "快速、私密、本地优先的 JSON 开发者工具",
     "description": "一个现代化、高性能、本地优先的 JSON 在线开发者工具。在浏览器中即时格式化、压缩和校验 JSON —— 你的数据永远不会上传到服务器。",
     "footerPrivacy": "你的数据永不离开浏览器",
-    "footerLicense": "MIT · Next.js 15"
+    "footerLicense": "MIT · Next.js 15",
+    "byOrg": "由 {org} 出品",
+    "orgVerified": "Morainet 认证项目"
   },
   "nav": {
     "main": "主导航",

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Github } from "lucide-react";
+import { Github, BadgeCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { MainNav } from "@/components/layout/main-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -69,11 +69,23 @@ export function SiteFooter() {
   const t = useTranslations("site");
   return (
     <footer className="border-t border-border bg-card/40">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-8 text-sm text-muted-foreground sm:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row">
         <div className="flex items-center gap-2.5">
           <BrandMark size={28} />
           <span className="font-medium text-foreground">{t("name")}</span>
         </div>
+
+        {/* Morainet organization verification badge */}
+        <a
+          href="https://github.com/Morainet"
+          target="_blank"
+          rel="noreferrer"
+          className="group inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-soft transition-colors hover:border-primary/40 hover:text-foreground"
+          title={t("orgVerified")}
+        >
+          <BadgeCheck className="h-3.5 w-3.5 text-primary" />
+          <span>{t("byOrg", { org: "Morainet" })}</span>
+        </a>
 
         <div className="flex items-center gap-4">
           <span className="text-xs text-muted-foreground/80">
