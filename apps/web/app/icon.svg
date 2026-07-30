@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!--
+    Parsy favicon: indigo rounded square with a white left brace, letter P,
+    and right brace. Brand color is hsl(239 84% 60%) approx #2f44e0.
+  -->
+  <defs>
+    <clipPath id="squircle">
+      <rect width="512" height="512" rx="112" ry="112"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background: indigo rounded square -->
+  <rect width="512" height="512" rx="112" ry="112" fill="#2f44e0"/>
+
+  <!-- Subtle top-light gradient for depth (kept subtle for crispness at 16px) -->
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#sheen)" opacity="0.18"/>
+  <defs>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- White glyph group: { P } -->
+  <g fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left brace { : top hook down to a mid point, then bottom hook up -->
+    <!-- Drawn as two polylines forming a stylized curly brace -->
+    <path d="M 150 150 Q 110 150 110 190 L 110 232 Q 110 256 86 256 Q 110 256 110 280 L 110 322 Q 110 362 150 362"/>
+    <!-- Right brace } : mirrored -->
+    <path d="M 362 150 Q 402 150 402 190 L 402 232 Q 402 256 426 256 Q 402 256 402 280 L 402 322 Q 402 362 362 362"/>
+  </g>
+
+  <!-- Letter P in the center, filled white -->
+  <path d="M 232 168 L 280 168 Q 320 168 320 208 Q 320 248 280 248 L 256 248 L 256 344 L 232 344 Z
+           M 256 188 L 256 228 L 278 228 Q 296 228 296 208 Q 296 188 278 188 Z"
+        fill="#ffffff"/>
+</svg>
