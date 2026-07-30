@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { MainNav } from "@/components/layout/main-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
+import { BrandMark } from "@/components/brand-mark";
 import {
   Tooltip,
   TooltipContent,
@@ -70,9 +71,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-card/40">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-8 text-sm text-muted-foreground sm:flex-row">
         <div className="flex items-center gap-2.5">
-          <span className="grid h-7 w-7 place-items-center rounded-md bg-primary font-mono text-xs font-bold text-primary-foreground">
-            {"{}"}
-          </span>
+          <BrandMark size={28} />
           <span className="font-medium text-foreground">{t("name")}</span>
         </div>
 

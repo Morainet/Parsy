@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { TOOLS } from "@parsy/ui";
 import { Link, usePathname } from "@/i18n/navigation";
+import { BrandMark } from "@/components/brand-mark";
 import { cn } from "@/lib/utils";
 
 /**
@@ -27,9 +28,10 @@ export function MainNav({ className }: { className?: string }) {
         href="/"
         className="group mr-3 flex items-center gap-2.5 rounded-lg px-1.5 py-1"
       >
-        <span className="relative grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground shadow-soft transition-transform group-hover:scale-105">
-          <span className="font-mono text-sm font-bold leading-none">{"{}"}</span>
-        </span>
+        <BrandMark
+          size={32}
+          className="transition-transform group-hover:scale-105"
+        />
         <span className="hidden text-[15px] font-semibold tracking-tight sm:inline">
           {t("name")}
         </span>
