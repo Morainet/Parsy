@@ -1,37 +1,86 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <!--
-    Parsy favicon: indigo rounded square with a white left brace, letter P,
-    and right brace. Brand color is hsl(239 84% 60%) approx #2f44e0.
+    Parsy favicon: indigo rounded square with a white bold letter P flanked
+    by two clean curly braces. All glyphs are hand-tuned vector paths (no
+    text element) so it renders identically everywhere.
+    Brand color hsl(239 84% 60%) ~ #2f44e0.
   -->
-  <defs>
-    <clipPath id="squircle">
-      <rect width="512" height="512" rx="112" ry="112"/>
-    </clipPath>
-  </defs>
 
   <!-- Background: indigo rounded square -->
-  <rect width="512" height="512" rx="112" ry="112" fill="#2f44e0"/>
+  <rect width="512" height="512" rx="116" ry="116" fill="#2f44e0"/>
 
-  <!-- Subtle top-light gradient for depth (kept subtle for crispness at 16px) -->
-  <rect width="512" height="512" rx="112" ry="112" fill="url(#sheen)" opacity="0.18"/>
+  <!-- Subtle top sheen for depth -->
+  <rect width="512" height="512" rx="116" ry="116" fill="url(#sheen)"/>
   <defs>
     <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
-  <!-- White glyph group: { P } -->
-  <g fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Left brace { : top hook down to a mid point, then bottom hook up -->
-    <!-- Drawn as two polylines forming a stylized curly brace -->
-    <path d="M 150 150 Q 110 150 110 190 L 110 232 Q 110 256 86 256 Q 110 256 110 280 L 110 322 Q 110 362 150 362"/>
-    <!-- Right brace } : mirrored -->
-    <path d="M 362 150 Q 402 150 402 190 L 402 232 Q 402 256 426 256 Q 402 256 402 280 L 402 322 Q 402 362 362 362"/>
-  </g>
+  <!--
+    Left curly brace "{" — a single filled path.
+    Built as: top serif curving in to a mid spine bump (pointing right at y=256),
+    then mirroring down to a bottom serif. Stroke-style with round joins.
+  -->
+  <path
+    fill="#ffffff"
+    d="M 150 130
+       C 128 130 120 148 120 168
+       L 120 214
+       C 120 234 110 246 92 246
+       C 110 246 120 258 120 278
+       L 120 324
+       C 120 344 128 362 150 362
+       L 150 344
+       C 142 344 138 338 138 324
+       L 138 282
+       C 138 264 130 254 118 250
+       C 130 246 138 236 138 218
+       L 138 168
+       C 138 154 142 148 150 148
+       Z"
+  />
 
-  <!-- Letter P in the center, filled white -->
-  <path d="M 232 168 L 280 168 Q 320 168 320 208 Q 320 248 280 248 L 256 248 L 256 344 L 232 344 Z
-           M 256 188 L 256 228 L 278 228 Q 296 228 296 208 Q 296 188 278 188 Z"
-        fill="#ffffff"/>
+  <!-- Right curly brace "}" — mirrored copy of the left -->
+  <path
+    fill="#ffffff"
+    d="M 362 130
+       C 384 130 392 148 392 168
+       L 392 214
+       C 392 234 402 246 420 246
+       C 402 246 392 258 392 278
+       L 392 324
+       C 392 344 384 362 362 362
+       L 362 344
+       C 370 344 374 338 374 324
+       L 374 282
+       C 374 264 382 254 394 250
+       C 382 246 374 236 374 218
+       L 374 168
+       C 374 154 370 148 362 148
+       Z"
+  />
+
+  <!--
+    Letter "P" — bold, centered. Filled path.
+    Stem on the left, bowl on the right with a hollow counter.
+  -->
+  <path
+    fill="#ffffff"
+    d="M 214 160
+       L 280 160
+       C 322 160 348 188 348 224
+       C 348 260 322 288 280 288
+       L 244 288
+       L 244 352
+       L 214 352
+       Z
+       M 244 188
+       L 244 260
+       L 276 260
+       C 300 260 316 246 316 224
+       C 316 202 300 188 276 188
+       Z"
+  />
 </svg>
