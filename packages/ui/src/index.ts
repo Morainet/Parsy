@@ -36,7 +36,7 @@ export const TOOLS: readonly ToolEntry[] = [
   { slug: "json-validator", href: "/json-validator", icon: "✔️", available: true },
   { slug: "json-minifier", href: "/json-minifier", icon: "🗜️", available: true },
   { slug: "json-tree", href: "/json-tree", icon: "🌳", available: true },
-  { slug: "json-diff", href: "/json-diff", icon: "🔍", available: false },
+  { slug: "json-diff", href: "/json-diff", icon: "🔍", available: true },
   { slug: "json-repair", href: "/json-repair", icon: "🛠️", available: false },
   { slug: "json-converter", href: "/json-to-typescript", icon: "💻", available: false },
 ] as const;

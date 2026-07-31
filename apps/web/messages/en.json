@@ -46,7 +46,8 @@
     },
     "json-diff": {
       "title": "JSON Diff",
-      "description": "Compare two JSON documents side by side and highlight every difference. Coming soon."
+      "short": "Diff",
+      "description": "Compare two JSON documents side by side with live highlighting of added, removed, and changed lines."
     },
     "json-repair": {
       "title": "JSON Repair",
@@ -202,7 +203,31 @@
     "tree": {
       "title": "JSON Tree Viewer — Expand, Collapse & Search Nested JSON",
       "description": "Browse JSON as a collapsible tree, search any node, and copy JSONPath or values in one click. 100% in your browser."
+    },
+    "diff": {
+      "title": "JSON Diff — Compare Two JSON Documents Online",
+      "description": "Compare two JSON documents side by side with live highlighting of added, removed, and changed lines. Character-level diffs. 100% in your browser."
     }
+  },
+  "diff": {
+    "original": "Original JSON",
+    "modified": "Modified JSON",
+    "result": "Diff result",
+    "placeholder": "Paste JSON here…",
+    "swap": "Swap",
+    "sample": "Sample",
+    "clear": "Clear",
+    "identical": "The two JSON documents are identical",
+    "hasDifferences": "{count} difference(s)",
+    "added": "added",
+    "removed": "removed",
+    "modified_label": "changed",
+    "sideBySide": "Side by side",
+    "inline": "Inline",
+    "originalError": "Original: {message} (line {line}, column {column})",
+    "modifiedError": "Modified: {message} (line {line}, column {column})",
+    "bothValid": "Both JSON documents are valid",
+    "empty": "Paste JSON in both panels above and the differences appear here."
   },
   "tree": {
     "input": "Input",

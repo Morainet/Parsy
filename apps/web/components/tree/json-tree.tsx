@@ -17,7 +17,7 @@ import {
   countNodes,
   type TreeNode,
 } from "@/lib/tree";
-import { cn, byteLength, formatBytes } from "@/lib/utils";
+import { byteLength, formatBytes } from "@/lib/utils";
 
 // Monaco is client-only; load it lazily (same pattern as JsonTool).
 const MonacoEditor = dynamic(() => import("@/components/editor/monaco-editor"), {

@@ -46,7 +46,8 @@
     },
     "json-diff": {
       "title": "JSON 对比",
-      "description": "并排对比两份 JSON，高亮所有差异。即将上线。"
+      "short": "对比",
+      "description": "并排对比两份 JSON，实时高亮新增、删除与修改的差异。"
     },
     "json-repair": {
       "title": "JSON 修复",
@@ -202,7 +203,31 @@
     "tree": {
       "title": "JSON 树形查看器 —— 展开/折叠/搜索嵌套 JSON",
       "description": "以可折叠的树形结构浏览 JSON，搜索任意节点，一键复制 JSONPath 路径与值。100% 在浏览器中。"
+    },
+    "diff": {
+      "title": "JSON 对比 —— 在线对比两份 JSON 的差异",
+      "description": "并排对比两份 JSON，实时高亮新增、删除与修改。支持字符级差异、行内高亮。100% 在浏览器中。"
     }
+  },
+  "diff": {
+    "original": "原始 JSON",
+    "modified": "修改 JSON",
+    "result": "差异结果",
+    "placeholder": "在此粘贴 JSON…",
+    "swap": "交换",
+    "sample": "示例",
+    "clear": "清空",
+    "identical": "两份 JSON 完全相同",
+    "hasDifferences": "{count} 处差异",
+    "added": "新增",
+    "removed": "删除",
+    "modified_label": "修改",
+    "sideBySide": "并排视图",
+    "inline": "内联视图",
+    "originalError": "原始 JSON：{message}（第 {line} 行，第 {column} 列）",
+    "modifiedError": "修改 JSON：{message}（第 {line} 行，第 {column} 列）",
+    "bothValid": "两份 JSON 均有效",
+    "empty": "在上方两栏分别粘贴 JSON，差异将显示在这里。"
   },
   "tree": {
     "input": "输入",
