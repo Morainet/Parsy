@@ -168,11 +168,16 @@ function MonacoEditorInner({
         options={{
           readOnly,
           minimap: { enabled: false },
+          // Industry-standard code-editor values: 14px is the sweet spot
+          // (matches VS Code / CodeMirror / jsoneditoronline defaults).
+          // line-height 21 ≈ 1.5x for comfortable scanning.
           fontSize: 14,
-          lineHeight: 23,
-          letterSpacing: 0.2,
+          lineHeight: 21,
+          // letterSpacing 0 — monospace fonts self-align; any tracking breaks
+          // JSON indentation alignment.
+          letterSpacing: 0,
           fontFamily:
-            "var(--font-mono), 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "'JetBrains Mono', 'Fira Code', var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
           fontLigatures: true,
           wordWrap: wordWrap ? "on" : "off",
           scrollBeyondLastLine: false,
