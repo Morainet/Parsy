@@ -41,7 +41,8 @@
     },
     "json-tree": {
       "title": "JSON 树形查看器",
-      "description": "展开、折叠、搜索嵌套 JSON 并复制路径。即将上线。"
+      "short": "树视图",
+      "description": "展开、折叠、搜索嵌套 JSON，并一键复制任意节点的路径与值。"
     },
     "json-diff": {
       "title": "JSON 对比",
@@ -197,6 +198,42 @@
     "minifier": {
       "title": "JSON 压缩 —— 在线压缩 JSON",
       "description": "去除所有空白，将 JSON 压缩为单行，缩小 API 与存储的数据体积。100% 在浏览器中。"
+    },
+    "tree": {
+      "title": "JSON 树形查看器 —— 展开/折叠/搜索嵌套 JSON",
+      "description": "以可折叠的树形结构浏览 JSON，搜索任意节点，一键复制 JSONPath 路径与值。100% 在浏览器中。"
+    }
+  },
+  "tree": {
+    "input": "输入",
+    "tree": "树",
+    "search": "搜索",
+    "searchPlaceholder": "搜索键或值…",
+    "clearSearch": "清除搜索",
+    "expandAll": "全部展开",
+    "collapseAll": "全部收起",
+    "expand": "展开",
+    "collapse": "折叠",
+    "copyPath": "复制路径",
+    "copyValue": "复制值",
+    "copiedPath": "已复制路径到剪贴板",
+    "copiedValue": "已复制值到剪贴板",
+    "copyFailed": "复制失败",
+    "sample": "示例",
+    "clear": "清空",
+    "item": "项",
+    "items": "项",
+    "nodes": "节点",
+    "matches": "匹配",
+    "matchCount": "{count} 个匹配",
+    "validTree": "JSON 有效",
+    "empty": {
+      "placeholder": "树形视图显示在这里",
+      "placeholderHint": "在左侧粘贴或输入 JSON，右侧将实时渲染为可折叠的树。",
+      "emptyValue": "空值",
+      "emptyValueHint": "输入是有效的 JSON，但没有可展开的内容。",
+      "invalidJson": "JSON 无效",
+      "lineCol": "第 {line} 行，第 {column} 列"
     }
   }
 }

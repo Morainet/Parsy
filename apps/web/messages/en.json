@@ -41,7 +41,8 @@
     },
     "json-tree": {
       "title": "JSON Tree Viewer",
-      "description": "Expand, collapse, search nested JSON, and copy paths. Coming soon."
+      "short": "Tree",
+      "description": "Expand, collapse, and search nested JSON, and copy any node's path or value in one click."
     },
     "json-diff": {
       "title": "JSON Diff",
@@ -197,6 +198,42 @@
     "minifier": {
       "title": "JSON Minifier — Compress JSON Online",
       "description": "Minify JSON to a single line by stripping all whitespace. Shrink payload size for APIs and storage. 100% in your browser."
+    },
+    "tree": {
+      "title": "JSON Tree Viewer — Expand, Collapse & Search Nested JSON",
+      "description": "Browse JSON as a collapsible tree, search any node, and copy JSONPath or values in one click. 100% in your browser."
+    }
+  },
+  "tree": {
+    "input": "Input",
+    "tree": "Tree",
+    "search": "Search",
+    "searchPlaceholder": "Search keys or values…",
+    "clearSearch": "Clear search",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "copyPath": "Copy path",
+    "copyValue": "Copy value",
+    "copiedPath": "Path copied to clipboard",
+    "copiedValue": "Value copied to clipboard",
+    "copyFailed": "Copy failed",
+    "sample": "Sample",
+    "clear": "Clear",
+    "item": "item",
+    "items": "items",
+    "nodes": "nodes",
+    "matches": "matches",
+    "matchCount": "{count} match(es)",
+    "validTree": "Valid JSON",
+    "empty": {
+      "placeholder": "The tree view appears here",
+      "placeholderHint": "Paste or type JSON on the left and it renders as a collapsible tree here.",
+      "emptyValue": "Empty value",
+      "emptyValueHint": "The input is valid JSON, but has nothing to expand.",
+      "invalidJson": "Invalid JSON",
+      "lineCol": "Line {line}, column {column}"
     }
   }
 }
