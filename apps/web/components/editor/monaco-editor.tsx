@@ -50,6 +50,66 @@ function MonacoEditorInner({
     editorRef.current = editor;
     monacoRef.current = monaco;
 
+    // Define custom JSON-friendly themes tuned to our brand palette.
+    // Light theme: warm off-white bg, indigo keys, vivid value colors.
+    monaco.editor.defineTheme("parsy-light", {
+      base: "vs",
+      inherit: true,
+      rules: [
+        { token: "string.key.json", foreground: "4338ca" }, // indigo keys
+        { token: "string.value.json", foreground: "047857" }, // emerald strings
+        { token: "number.json", foreground: "b45309" }, // amber numbers
+        { token: "keyword.json", foreground: "7c3aed" }, // violet true/false
+        { token: "keyword.json", fontStyle: "italic" },
+        { token: "string.value.json", fontStyle: "" },
+      ],
+      colors: {
+        "editor.background": "#fcfcfd",
+        "editor.foreground": "#1e293b",
+        "editorLineNumber.foreground": "#cbd5e1",
+        "editorLineNumber.activeForeground": "#64748b",
+        "editor.selectionBackground": "#e0e7ff",
+        "editor.inactiveSelectionBackground": "#eef2ff",
+        "editor.lineHighlightBackground": "#f8fafc",
+        "editor.lineHighlightBorder": "#00000000",
+        "editorCursor.foreground": "#4f46e5",
+        "editorIndentGuide.background1": "#eef2f7",
+        "editorIndentGuide.activeBackground1": "#cbd5e1",
+        "editorBracketMatch.background": "#c7d2fe80",
+        "editorBracketMatch.border": "#818cf8",
+      },
+    });
+
+    // Dark theme: deep slate bg, lighter indigo keys, bright value colors.
+    monaco.editor.defineTheme("parsy-dark", {
+      base: "vs-dark",
+      inherit: true,
+      rules: [
+        { token: "string.key.json", foreground: "a5b4fc" }, // indigo-300 keys
+        { token: "string.value.json", foreground: "6ee7b7" }, // emerald-300 strings
+        { token: "number.json", foreground: "fcd34d" }, // amber-300 numbers
+        { token: "keyword.json", foreground: "c4b5fd", fontStyle: "italic" }, // violet-300
+      ],
+      colors: {
+        "editor.background": "#0f1729",
+        "editor.foreground": "#e2e8f0",
+        "editorLineNumber.foreground": "#334155",
+        "editorLineNumber.activeForeground": "#94a3b8",
+        "editor.selectionBackground": "#312e81",
+        "editor.inactiveSelectionBackground": "#1e1b4b",
+        "editor.lineHighlightBackground": "#111c33",
+        "editor.lineHighlightBorder": "#00000000",
+        "editorCursor.foreground": "#818cf8",
+        "editorIndentGuide.background1": "#1e293b",
+        "editorIndentGuide.activeBackground1": "#475569",
+        "editorBracketMatch.background": "#4338ca60",
+        "editorBracketMatch.border": "#6366f1",
+      },
+    });
+
+    // Apply the theme matching the current color mode.
+    monaco.editor.setTheme(resolvedTheme === "dark" ? "parsy-dark" : "parsy-light");
+
     // Configure JSON-friendly defaults.
     monaco.languages.json?.jsonDefaults.setDiagnosticsOptions({
       validate: !readOnly,
@@ -57,6 +117,13 @@ function MonacoEditorInner({
       schemaValidation: "error",
     });
   };
+
+  // Re-apply the custom theme when the color mode changes.
+  React.useEffect(() => {
+    const monaco = monacoRef.current;
+    if (!monaco) return;
+    monaco.editor.setTheme(resolvedTheme === "dark" ? "parsy-dark" : "parsy-light");
+  }, [resolvedTheme]);
 
   // Re-apply the error-line decoration whenever it changes.
   React.useEffect(() => {
@@ -90,7 +157,7 @@ function MonacoEditorInner({
       <Editor
         language={language}
         value={value}
-        theme={resolvedTheme === "dark" ? "vs-dark" : "light"}
+        theme={resolvedTheme === "dark" ? "parsy-dark" : "parsy-light"}
         onMount={handleMount}
         onChange={handleChange}
         loading={
@@ -102,18 +169,28 @@ function MonacoEditorInner({
           readOnly,
           minimap: { enabled: false },
           fontSize: 13,
-          lineHeight: 20,
-          fontFamily: "var(--font-mono), ui-monospace, monospace",
+          lineHeight: 21,
+          letterSpacing: 0.2,
+          fontFamily:
+            "var(--font-mono), 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
           fontLigatures: true,
           wordWrap: wordWrap ? "on" : "off",
           scrollBeyondLastLine: false,
           smoothScrolling: true,
           cursorSmoothCaretAnimation: "on",
+          cursorBlinking: "smooth",
           tabSize: 2,
           insertSpaces: true,
           renderLineHighlight: "all",
           roundedSelection: true,
-          padding: { top: 12, bottom: 12 },
+          padding: { top: 14, bottom: 14 },
+          guides: {
+            indentation: true,
+            bracketPairs: true,
+          },
+          bracketPairColorization: {
+            enabled: true,
+          },
           scrollbar: {
             verticalScrollbarSize: 10,
             horizontalScrollbarSize: 10,
