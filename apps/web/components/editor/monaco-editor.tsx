@@ -168,8 +168,8 @@ function MonacoEditorInner({
         options={{
           readOnly,
           minimap: { enabled: false },
-          fontSize: 13,
-          lineHeight: 21,
+          fontSize: 14,
+          lineHeight: 23,
           letterSpacing: 0.2,
           fontFamily:
             "var(--font-mono), 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
