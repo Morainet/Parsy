@@ -71,7 +71,7 @@ export function Toolbar({
   const t = useTranslations("tool.toolbar");
 
   return (
-    <div className="flex flex-wrap items-center gap-1.5 rounded-xl border border-border bg-card px-2.5 py-2 shadow-soft">
+    <div className="flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 shadow-soft">
       <ToolButton
         label={t("format")}
         tip={t("formatTip")}

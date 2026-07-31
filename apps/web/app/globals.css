@@ -50,11 +50,12 @@
   --color-ring: hsl(239 84% 60%);
 
   /* radii + type */
-  --radius: 0.75rem;
+  --radius: 0.625rem;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
-    Consolas, monospace;
+    "Segoe UI", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Noto Sans CJK SC", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", "Fira Code",
+    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* Dark theme overrides — applied under the `.dark` class. */
@@ -110,9 +111,18 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    font-feature-settings: "kern", "liga", "calt", "tnum";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Headings: tighter, more confident rhythm. */
+  h1, h2, h3, h4 {
+    letter-spacing: -0.018em;
+    text-wrap: balance;
   }
 
   /* Soft, theme-aware scrollbars. */

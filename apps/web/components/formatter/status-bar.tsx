@@ -26,7 +26,7 @@ export function StatusBar({ status, input, output, errorMessage }: StatusBarProp
   const showOutput = output.length > 0;
 
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-border bg-card/80 px-3 py-2 text-xs text-muted-foreground shadow-soft backdrop-blur">
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 rounded-xl border border-border bg-card/80 px-4 py-2.5 text-xs text-muted-foreground shadow-soft backdrop-blur">
       <StatusPill status={status} errorMessage={errorMessage} />
 
       <span aria-hidden className="hidden h-3 w-px bg-border sm:block" />

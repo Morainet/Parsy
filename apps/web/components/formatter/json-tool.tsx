@@ -245,14 +245,14 @@ export function JsonTool({ initialMode, title, description }: JsonToolProps) {
     status.state === "invalid" && status.error ? status.error.line : null;
 
   return (
-    <div className="mx-auto flex h-[calc(100svh-4rem)] max-w-[1600px] flex-col px-3 py-4 sm:px-5">
+    <div className="mx-auto flex h-[calc(100svh-4rem)] max-w-[1600px] flex-col px-4 py-5 sm:px-6">
       {/* Header */}
-      <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
             {title}
           </h1>
-          <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{description}</p>
         </div>
         <ModeSwitch mode={mode} onChange={handleModeChange} />
       </div>
@@ -275,7 +275,7 @@ export function JsonTool({ initialMode, title, description }: JsonToolProps) {
       />
 
       {/* Editors */}
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-3 py-3 md:grid-cols-[1fr_auto_1fr]">
+      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 py-4 md:grid-cols-[1fr_auto_1fr]">
         <Pane
           label={t("panes.input")}
           badge={input ? "input" : undefined}
@@ -356,8 +356,8 @@ function Pane({
         className,
       )}
     >
-      <div className="pointer-events-none absolute left-3 top-2.5 z-10 flex items-center gap-2">
-        <span className="select-none rounded-md bg-background/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur">
+      <div className="pointer-events-none absolute left-3 top-3 z-10 flex items-center gap-2">
+        <span className="select-none rounded-md bg-background/80 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur">
           {label}
         </span>
         {badge && (
@@ -370,7 +370,7 @@ function Pane({
           />
         )}
       </div>
-      <div className="h-full w-full pt-8">{children}</div>
+      <div className="h-full w-full pt-9">{children}</div>
     </div>
   );
 }
