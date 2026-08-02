@@ -55,6 +55,11 @@ const LANG_META: Record<TargetLanguage, { ext: string; mono: string }> = {
   typescript: { ext: "ts", mono: "typescript" },
   go: { ext: "go", mono: "go" },
   java: { ext: "java", mono: "java" },
+  kotlin: { ext: "kt", mono: "kotlin" },
+  swift: { ext: "swift", mono: "swift" },
+  rust: { ext: "rs", mono: "rust" },
+  csharp: { ext: "cs", mono: "csharp" },
+  dart: { ext: "dart", mono: "dart" },
 };
 
 /**
@@ -154,6 +159,11 @@ export function JsonConverter({ title, description }: JsonConverterProps) {
               <SelectItem value="typescript">{t("typescript")}</SelectItem>
               <SelectItem value="go">{t("go")}</SelectItem>
               <SelectItem value="java">{t("java")}</SelectItem>
+              <SelectItem value="kotlin">{t("kotlin")}</SelectItem>
+              <SelectItem value="swift">{t("swift")}</SelectItem>
+              <SelectItem value="rust">{t("rust")}</SelectItem>
+              <SelectItem value="csharp">{t("csharp")}</SelectItem>
+              <SelectItem value="dart">{t("dart")}</SelectItem>
             </SelectContent>
           </Select>
         </div>

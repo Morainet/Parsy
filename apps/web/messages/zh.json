@@ -67,7 +67,7 @@
     "json-converter": {
       "title": "JSON 转代码",
       "short": "转代码",
-      "description": "从 JSON 自动推断并生成 TypeScript、Go、Java 的类型定义，支持嵌套对象与数组。"
+      "description": "从 JSON 自动推断并生成 TypeScript、Go、Java、Kotlin、Swift、Rust、C#、Dart 等 8 种语言的类型定义。"
     }
   },
   "home": {
@@ -117,7 +117,7 @@
         },
         {
           "q": "支持哪些语言生成？",
-          "a": "目前支持 TypeScript、Go 和 Java。更多语言（Kotlin、Swift、Rust 等）即将推出。"
+          "a": "目前支持 TypeScript、Go、Java、Kotlin、Swift、Rust、C# 和 Dart 共 8 种语言。"
         }
       ]
     },
@@ -288,7 +288,12 @@
     "placeholderHint": "在左侧粘贴 JSON，选择目标语言，点击转换。",
     "typescript": "TypeScript",
     "go": "Go",
-    "java": "Java"
+    "java": "Java",
+    "kotlin": "Kotlin",
+    "swift": "Swift",
+    "rust": "Rust",
+    "csharp": "C#",
+    "dart": "Dart"
   },
   "repair": {
     "repair": "修复",

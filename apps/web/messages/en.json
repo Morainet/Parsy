@@ -67,7 +67,7 @@
     "json-converter": {
       "title": "JSON to Code",
       "short": "To Code",
-      "description": "Infer and generate TypeScript, Go, and Java type definitions from JSON. Handles nested objects and arrays."
+      "description": "Infer and generate type definitions in 8 languages (TypeScript, Go, Java, Kotlin, Swift, Rust, C#, Dart) from JSON."
     }
   },
   "home": {
@@ -117,7 +117,7 @@
         },
         {
           "q": "Which languages can I generate?",
-          "a": "Currently TypeScript, Go, and Java. More languages (Kotlin, Swift, Rust, and more) are coming soon."
+          "a": "Currently 8 languages: TypeScript, Go, Java, Kotlin, Swift, Rust, C#, and Dart."
         }
       ]
     },
@@ -288,7 +288,12 @@
     "placeholderHint": "Paste JSON on the left, pick a language, and hit Convert.",
     "typescript": "TypeScript",
     "go": "Go",
-    "java": "Java"
+    "java": "Java",
+    "kotlin": "Kotlin",
+    "swift": "Swift",
+    "rust": "Rust",
+    "csharp": "C#",
+    "dart": "Dart"
   },
   "repair": {
     "repair": "Repair",

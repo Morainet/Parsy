@@ -18,7 +18,15 @@
 // ---------------------------------------------------------------------------
 
 /** Languages the converter can generate. */
-export type TargetLanguage = "typescript" | "go" | "java";
+export type TargetLanguage =
+  | "typescript"
+  | "go"
+  | "java"
+  | "kotlin"
+  | "swift"
+  | "rust"
+  | "csharp"
+  | "dart";
 
 export interface ConvertOptions {
   language: TargetLanguage;
@@ -38,6 +46,11 @@ export const SUPPORTED_LANGUAGES: readonly TargetLanguage[] = [
   "typescript",
   "go",
   "java",
+  "kotlin",
+  "swift",
+  "rust",
+  "csharp",
+  "dart",
 ] as const;
 
 // ---------------------------------------------------------------------------
@@ -279,6 +292,11 @@ const RENDERERS: Record<
   typescript: renderTypeScript,
   go: renderGo,
   java: renderJava,
+  kotlin: renderKotlin,
+  swift: renderSwift,
+  rust: renderRust,
+  csharp: renderCSharp,
+  dart: renderDart,
 };
 
 /**
@@ -335,6 +353,36 @@ function primitiveDisplay(
       boolean: "Boolean",
       null: "Object",
     },
+    kotlin: {
+      string: "String",
+      number: "Double",
+      boolean: "Boolean",
+      null: "Any?",
+    },
+    swift: {
+      string: "String",
+      number: "Double",
+      boolean: "Bool",
+      null: "Any?",
+    },
+    rust: {
+      string: "String",
+      number: "f64",
+      boolean: "bool",
+      null: "Option<serde_json::Value>",
+    },
+    csharp: {
+      string: "string",
+      number: "double",
+      boolean: "bool",
+      null: "object",
+    },
+    dart: {
+      string: "String",
+      number: "double",
+      boolean: "bool",
+      null: "dynamic",
+    },
   };
   const m = map[lang];
   const parts = [...types].map((t) => m[t]);
@@ -355,25 +403,46 @@ function typeNameOf(
     case "array": {
       const el = node.elementType;
       if (!el) {
-        return lang === "typescript"
-          ? "unknown[]"
-          : lang === "go"
-            ? "[]interface{}"
-            : "List<Object>";
+        // Empty array — emit a permissive default per language.
+        const emptyMap: Record<TargetLanguage, string> = {
+          typescript: "unknown[]",
+          go: "[]interface{}",
+          java: "List<Object>",
+          kotlin: "List<Any>",
+          swift: "[Any]",
+          rust: "Vec<serde_json::Value>",
+          csharp: "List<object>",
+          dart: "List<dynamic>",
+        };
+        return emptyMap[lang];
       }
       const inner = typeNameOf(el, lang, namer);
-      if (lang === "typescript") return `${inner}[]`;
-      if (lang === "go") return `[]${inner}`;
-      return `List<${inner}>`;
+      const arrMap: Record<TargetLanguage, (t: string) => string> = {
+        typescript: (t) => `${t}[]`,
+        go: (t) => `[]${t}`,
+        java: (t) => `List<${t}>`,
+        kotlin: (t) => `List<${t}>`,
+        swift: (t) => `[${t}]`,
+        rust: (t) => `Vec<${t}>`,
+        csharp: (t) => `List<${t}>`,
+        dart: (t) => `List<${t}>`,
+      };
+      return arrMap[lang](inner);
     }
     case "object": {
       const name = namer.nameFor(node.signature);
       if (name) return name;
-      return lang === "typescript"
-        ? "Record<string, unknown>"
-        : lang === "go"
-          ? "map[string]interface{}"
-          : "Object";
+      const anonMap: Record<TargetLanguage, string> = {
+        typescript: "Record<string, unknown>",
+        go: "map[string]interface{}",
+        java: "Object",
+        kotlin: "Map<String, Any>",
+        swift: "[String: Any]",
+        rust: "serde_json::Value",
+        csharp: "Dictionary<string, object>",
+        dart: "Map<String, dynamic>",
+      };
+      return anonMap[lang];
     }
   }
 }
@@ -506,6 +575,216 @@ function renderJava(model: TypeModel, rootName: string): string {
 }
 
 function javaFieldName(key: string): string {
+  const cleaned = key.replace(/[^A-Za-z0-9]/g, "");
+  return cleaned.charAt(0).toLowerCase() + cleaned.slice(1) || "field";
+}
+
+// ---- Kotlin ---------------------------------------------------------------
+
+function renderKotlin(model: TypeModel, rootName: string): string {
+  const namer = primeNamer(model, rootName);
+  const lines: string[] = [];
+
+  for (const nt of model.namedTypes) {
+    lines.push(...renderKotlinDataClass(nt.name, nt.object, namer));
+    lines.push("");
+  }
+  if (model.root.kind === "object") {
+    lines.push(...renderKotlinDataClass(rootName, model.root, namer));
+  } else {
+    lines.push(`typealias ${rootName} = ${typeNameOf(model.root, "kotlin", namer)}`);
+  }
+  return lines.join("\n").trimEnd() + "\n";
+}
+
+function renderKotlinDataClass(
+  name: string,
+  obj: ObjectType,
+  namer: TypeNamer,
+): string[] {
+  const fields = obj.fieldOrder.map((fk) => {
+    const field = obj.fields.get(fk)!;
+    const onlyNull = field.kind === "primitive" && field.types.size === 1 && field.types.has("null");
+    const optional = field.kind === "primitive" && field.types.has("null") && !onlyNull;
+    const type = typeNameOf(field, "kotlin", namer);
+    const safeKey = IDENT_RE.test(fk) ? fk : `"${fk}"`;
+    return `    val ${safeKey}: ${type}${optional ? "? = null" : ""}`;
+  });
+  return [`data class ${name}(`, ...fields, ")"];
+}
+
+// ---- Swift ----------------------------------------------------------------
+
+function renderSwift(model: TypeModel, rootName: string): string {
+  const namer = primeNamer(model, rootName);
+  const lines: string[] = ["import Foundation", ""];
+
+  for (const nt of model.namedTypes) {
+    lines.push(...renderSwiftStruct(nt.name, nt.object, namer));
+    lines.push("");
+  }
+  if (model.root.kind === "object") {
+    lines.push(...renderSwiftStruct(rootName, model.root, namer));
+  } else {
+    lines.push(`typealias ${rootName} = ${typeNameOf(model.root, "swift", namer)}`);
+  }
+  return lines.join("\n").trimEnd() + "\n";
+}
+
+function renderSwiftStruct(
+  name: string,
+  obj: ObjectType,
+  namer: TypeNamer,
+): string[] {
+  const lines = [`struct ${name}: Codable {`];
+  for (const fk of obj.fieldOrder) {
+    const field = obj.fields.get(fk)!;
+    const onlyNull = field.kind === "primitive" && field.types.size === 1 && field.types.has("null");
+    const optional = field.kind === "primitive" && field.types.has("null") && !onlyNull;
+    const type = typeNameOf(field, "swift", namer);
+    const safeKey = IDENT_RE.test(fk) ? fk : `"${fk}"`;
+    lines.push(`    let ${safeKey}: ${type}${optional ? "?" : ""}`);
+  }
+  lines.push("}");
+  return lines;
+}
+
+// ---- Rust -----------------------------------------------------------------
+
+function renderRust(model: TypeModel, rootName: string): string {
+  const namer = primeNamer(model, rootName);
+  const lines: string[] = [
+    "use serde::{Deserialize, Serialize};",
+    "",
+    "#[derive(Debug, Clone, Serialize, Deserialize)]",
+    `pub struct ${rootName} {`,
+  ];
+
+  if (model.root.kind === "object") {
+    for (const fk of model.root.fieldOrder) {
+      const field = model.root.fields.get(fk)!;
+      const optional = field.kind === "primitive" && field.types.has("null");
+      const type = typeNameOf(field, "rust", namer);
+      const rustKey = toSnakeCase(fk);
+      lines.push(
+        `    pub ${rustKey}: ${optional ? `Option<${type}>` : type},`,
+      );
+    }
+  }
+
+  for (const nt of model.namedTypes) {
+    lines.push("}");
+    lines.push("");
+    lines.push("#[derive(Debug, Clone, Serialize, Deserialize)]");
+    lines.push(`pub struct ${nt.name} {`);
+    for (const fk of nt.object.fieldOrder) {
+      const field = nt.object.fields.get(fk)!;
+      const optional = field.kind === "primitive" && field.types.has("null");
+      const type = typeNameOf(field, "rust", namer);
+      const rustKey = toSnakeCase(fk);
+      lines.push(
+        `    pub ${rustKey}: ${optional ? `Option<${type}>` : type},`,
+      );
+    }
+  }
+  lines.push("}");
+  return lines.join("\n").trimEnd() + "\n";
+}
+
+function toSnakeCase(key: string): string {
+  // Convert camelCase / PascalCase to snake_case; sanitize non-idents.
+  const cleaned = key.replace(/[^A-Za-z0-9]/g, "_");
+  const snake = cleaned.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toLowerCase();
+  // Rust raw identifier avoidance: r# prefix not needed for most names.
+  return snake || "field";
+}
+
+// ---- C# -------------------------------------------------------------------
+
+function renderCSharp(model: TypeModel, rootName: string): string {
+  const namer = primeNamer(model, rootName);
+  const lines: string[] = [
+    "using System.Collections.Generic;",
+    "",
+    `public class ${rootName}`,
+    "{",
+  ];
+
+  if (model.root.kind === "object") {
+    for (const fk of model.root.fieldOrder) {
+      const field = model.root.fields.get(fk)!;
+      const type = typeNameOf(field, "csharp", namer);
+      lines.push(`    public ${type} ${toPascalCase(fk)} { get; set; }`);
+    }
+  }
+
+  for (const nt of model.namedTypes) {
+    lines.push("}");
+    lines.push("");
+    lines.push(`public class ${nt.name}`);
+    lines.push("{");
+    for (const fk of nt.object.fieldOrder) {
+      const field = nt.object.fields.get(fk)!;
+      const type = typeNameOf(field, "csharp", namer);
+      lines.push(`    public ${type} ${toPascalCase(fk)} { get; set; }`);
+    }
+  }
+  lines.push("}");
+  return lines.join("\n").trimEnd() + "\n";
+}
+
+function toPascalCase(key: string): string {
+  const cleaned = key.replace(/[^A-Za-z0-9]/g, " ");
+  return (
+    cleaned
+      .split(" ")
+      .filter(Boolean)
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join("") || "Field"
+  );
+}
+
+// ---- Dart -----------------------------------------------------------------
+
+function renderDart(model: TypeModel, rootName: string): string {
+  const namer = primeNamer(model, rootName);
+  const lines: string[] = [`class ${rootName} {`];
+
+  if (model.root.kind === "object") {
+    for (const fk of model.root.fieldOrder) {
+      const field = model.root.fields.get(fk)!;
+      const type = typeNameOf(field, "dart", namer);
+      lines.push(`  final ${type} ${dartFieldName(fk)};`);
+    }
+    lines.push("");
+    lines.push(`  ${rootName}({`);
+    for (const fk of model.root.fieldOrder) {
+      lines.push(`    required this.${dartFieldName(fk)},`);
+    }
+    lines.push("  });");
+  }
+
+  for (const nt of model.namedTypes) {
+    lines.push("}");
+    lines.push("");
+    lines.push(`class ${nt.name} {`);
+    for (const fk of nt.object.fieldOrder) {
+      const field = nt.object.fields.get(fk)!;
+      const type = typeNameOf(field, "dart", namer);
+      lines.push(`  final ${type} ${dartFieldName(fk)};`);
+    }
+    lines.push("");
+    lines.push(`  ${nt.name}({`);
+    for (const fk of nt.object.fieldOrder) {
+      lines.push(`    required this.${dartFieldName(fk)},`);
+    }
+    lines.push("  });");
+  }
+  lines.push("}");
+  return lines.join("\n").trimEnd() + "\n";
+}
+
+function dartFieldName(key: string): string {
   const cleaned = key.replace(/[^A-Za-z0-9]/g, "");
   return cleaned.charAt(0).toLowerCase() + cleaned.slice(1) || "field";
 }
