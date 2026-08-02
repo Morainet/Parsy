@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { convertJSON, type TargetLanguage } from "@parsy/converter";
 import { useCopy } from "@/hooks/use-copy";
+import { useHotkey } from "@/hooks/use-hotkey";
 import { useJsonStore } from "@/store/json-store";
 import { SAMPLE_JSON } from "@/lib/sample-json";
 import { Button } from "@/components/ui/button";
@@ -65,7 +66,6 @@ export function JsonConverter({ title, description }: JsonConverterProps) {
   const t = useTranslations("converter");
   const tEditor = useTranslations("editor");
   const tStatus = useTranslations("tool.status");
-  const tErrors = useTranslations("errors");
 
   const { input, output, setInput, setOutput, reset } = useJsonStore();
   const { copied, copy } = useCopy();
@@ -125,6 +125,9 @@ export function JsonConverter({ title, description }: JsonConverterProps) {
       }
     }, 0);
   }, [setInput, setOutput, language, t]);
+
+  // Keyboard shortcut: Cmd/Ctrl+Enter runs conversion.
+  useHotkey({ key: "Enter", mod: true }, handleConvert);
 
   const hasInput = input.trim().length > 0;
   const hasOutput = output.length > 0;

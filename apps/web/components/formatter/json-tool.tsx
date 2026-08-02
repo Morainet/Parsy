@@ -10,6 +10,7 @@ import { Toolbar } from "@/components/formatter/toolbar";
 import { StatusBar } from "@/components/formatter/status-bar";
 import { useJsonWorker } from "@/hooks/use-json-worker";
 import { useCopy } from "@/hooks/use-copy";
+import { useHotkey } from "@/hooks/use-hotkey";
 import { useJsonStore, type ToolMode } from "@/store/json-store";
 import { SAMPLE_JSON } from "@/lib/sample-json";
 import { cn, byteLength, formatBytes } from "@/lib/utils";
@@ -238,6 +239,9 @@ export function JsonTool({ initialMode, title, description }: JsonToolProps) {
   const handleModeChange = React.useCallback((next: ToolMode) => {
     setMode(next);
   }, []);
+
+  // Keyboard shortcut: Cmd/Ctrl+Enter runs the primary action.
+  useHotkey({ key: "Enter", mod: true }, handlePrimary);
 
   const hasInput = input.trim().length > 0;
   const hasOutput = output.length > 0;

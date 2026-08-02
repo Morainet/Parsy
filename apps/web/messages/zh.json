@@ -8,6 +8,16 @@
     "byOrg": "由 {org} 出品",
     "orgVerified": "Morainet 认证项目"
   },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "你访问的页面不存在，或者已被移动。",
+    "code": "404",
+    "backHome": "返回首页",
+    "browseTools": "浏览所有工具"
+  },
+  "loading": {
+    "text": "加载中…"
+  },
   "nav": {
     "main": "主导航",
     "github": "在 GitHub 上查看源码",
@@ -72,8 +82,49 @@
     "comingSoon": "即将上线",
     "sections": {
       "toolsTitle": "你需要的 JSON 工具都在这里",
-      "toolsSubtitle": "三个工具现已上线，更多即将推出。选一个开始吧。",
-      "whyTitle": "为什么选择"
+      "toolsSubtitle": "七个工具现已上线，覆盖格式化、校验、压缩、树视图、对比、修复与转代码。选一个开始吧。",
+      "whyTitle": "为什么选择",
+      "howTitle": "三步上手",
+      "faqTitle": "常见问题"
+    },
+    "how": {
+      "step1": {
+        "title": "粘贴 JSON",
+        "desc": "把 JSON 粘贴到左侧编辑器，或点击“示例”加载演示数据。"
+      },
+      "step2": {
+        "title": "选择操作",
+        "desc": "格式化、校验、压缩、对比、修复或转代码——一键完成。"
+      },
+      "step3": {
+        "title": "复制结果",
+        "desc": "结果即时生成在右侧，复制或下载即可使用。"
+      }
+    },
+    "faq": {
+      "items": [
+        {
+          "q": "我的数据安全吗？",
+          "a": "完全安全。所有处理都在你的浏览器中完成，JSON 永不上传到任何服务器。"
+        },
+        {
+          "q": "支持多大的 JSON 文件？",
+          "a": "支持数 MB 的 JSON。繁重的解析工作在 Web Worker 中运行，界面不会卡顿。"
+        },
+        {
+          "q": "需要注册或付费吗？",
+          "a": "不需要。Parsy 完全免费、开源，无需注册，无任何限制。"
+        },
+        {
+          "q": "支持哪些语言生成？",
+          "a": "目前支持 TypeScript、Go 和 Java。更多语言（Kotlin、Swift、Rust 等）即将推出。"
+        }
+      ]
+    },
+    "footerCta": {
+      "title": "准备好处理你的 JSON 了吗？",
+      "subtitle": "免费、私密、无需注册。立即开始。",
+      "button": "开始使用"
     },
     "pillars": {
       "fast": {

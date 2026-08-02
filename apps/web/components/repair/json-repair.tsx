@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useJsonWorker } from "@/hooks/use-json-worker";
 import { useCopy } from "@/hooks/use-copy";
+import { useHotkey } from "@/hooks/use-hotkey";
 import { useJsonStore } from "@/store/json-store";
 import { SAMPLE_BROKEN_JSON } from "@/lib/sample-broken-json";
 import { Button } from "@/components/ui/button";
@@ -55,7 +56,7 @@ export function JsonRepair({ title, description }: JsonRepairProps) {
   const tErrors = useTranslations("errors");
   const tStatus = useTranslations("tool.status");
 
-  const { input, output, indent, status, setInput, setOutput, setStatus, reset } =
+  const { input, output, status, setInput, setOutput, setStatus, reset } =
     useJsonStore();
   const { process } = useJsonWorker();
   const { copied, copy } = useCopy();
@@ -125,6 +126,9 @@ export function JsonRepair({ title, description }: JsonRepairProps) {
     // Auto-run repair after loading the sample.
     setTimeout(() => void handleRepair(), 0);
   }, [setInput, setOutput, handleRepair]);
+
+  // Keyboard shortcut: Cmd/Ctrl+Enter runs repair.
+  useHotkey({ key: "Enter", mod: true }, handleRepair);
 
   const hasInput = input.trim().length > 0;
   const hasOutput = output.length > 0;

@@ -1,16 +1,19 @@
-import { ArrowRight, Lock, Zap, ShieldCheck, Gauge, Code2, Sparkles } from "lucide-react";
+import { ArrowRight, Lock, Zap, ShieldCheck, Gauge, Code2, Sparkles, ClipboardPaste, MousePointerClick, CopyPlus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { TOOLS } from "@parsy/ui";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { FaqItem } from "@/components/home/faq-item";
 
 export default function HomePage() {
   const t = useTranslations("home");
   const tt = useTranslations("tools");
   const live = TOOLS.filter((tool) => tool.available);
   const soon = TOOLS.filter((tool) => !tool.available);
+  // FAQ items are an array in the message file; read them raw.
+  const faqItems = t.raw("faq.items") as Array<{ q: string; a: string }>;
 
   return (
     <div>
@@ -143,6 +146,70 @@ export default function HomePage() {
           />
         </div>
       </section>
+
+      {/* ─────────────────────── How it works ─────────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:py-20">
+        <div className="mb-10 max-w-2xl">
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+            {t("sections.howTitle")}
+          </h2>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-3">
+          <HowStep
+            num="1"
+            icon={<ClipboardPaste className="h-5 w-5" />}
+            title={t("how.step1.title")}
+            desc={t("how.step1.desc")}
+          />
+          <HowStep
+            num="2"
+            icon={<MousePointerClick className="h-5 w-5" />}
+            title={t("how.step2.title")}
+            desc={t("how.step2.desc")}
+          />
+          <HowStep
+            num="3"
+            icon={<CopyPlus className="h-5 w-5" />}
+            title={t("how.step3.title")}
+            desc={t("how.step3.desc")}
+          />
+        </div>
+      </section>
+
+      {/* ─────────────────────────── FAQ ─────────────────────────── */}
+      <section className="border-t border-border bg-card/30">
+        <div className="mx-auto max-w-3xl px-4 py-16 sm:py-20">
+          <h2 className="mb-8 text-center text-2xl font-semibold tracking-tight sm:text-3xl">
+            {t("sections.faqTitle")}
+          </h2>
+          <div className="divide-y divide-border">
+            {faqItems.map((item, i) => (
+              <FaqItem key={i} q={item.q} a={item.a} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────── Footer CTA ──────────────────────── */}
+      <section className="relative overflow-hidden border-t border-border">
+        <div className="glow-primary pointer-events-none absolute inset-0 opacity-50" />
+        <div className="relative mx-auto max-w-3xl px-4 py-20 text-center sm:py-24">
+          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+            {t("footerCta.title")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+            {t("footerCta.subtitle")}
+          </p>
+          <div className="mt-8 flex justify-center">
+            <Button asChild size="lg" className="h-12 px-6 text-base shadow-soft">
+              <Link href="/json-formatter">
+                {t("footerCta.button")}
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -271,6 +338,31 @@ function WhyItem({
       </div>
       <h3 className="text-base font-semibold">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
+    </div>
+  );
+}
+
+function HowStep({
+  num,
+  icon,
+  title,
+  desc,
+}: {
+  num: string;
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div className="relative rounded-2xl border border-border bg-card p-6 shadow-soft">
+      <div className="mb-4 flex items-center gap-3">
+        <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-lg font-bold text-primary-foreground">
+          {num}
+        </span>
+        <span className="text-primary">{icon}</span>
+      </div>
+      <h3 className="font-semibold">{title}</h3>
+      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
     </div>
   );
 }

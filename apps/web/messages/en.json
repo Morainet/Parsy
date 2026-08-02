@@ -8,6 +8,16 @@
     "byOrg": "Built by {org}",
     "orgVerified": "A Morainet verified project"
   },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "code": "404",
+    "backHome": "Back to home",
+    "browseTools": "Browse all tools"
+  },
+  "loading": {
+    "text": "Loading…"
+  },
   "nav": {
     "main": "Main",
     "github": "View source on GitHub",
@@ -72,8 +82,49 @@
     "comingSoon": "Coming soon",
     "sections": {
       "toolsTitle": "Everything you need for JSON",
-      "toolsSubtitle": "Three live tools today, with more on the way. Pick one to get started.",
-      "whyTitle": "Why"
+      "toolsSubtitle": "Seven tools live now — format, validate, minify, tree, diff, repair, and convert. Pick one to get started.",
+      "whyTitle": "Why",
+      "howTitle": "Get started in 3 steps",
+      "faqTitle": "Frequently asked questions"
+    },
+    "how": {
+      "step1": {
+        "title": "Paste your JSON",
+        "desc": "Paste JSON into the left editor, or click \"Sample\" to load demo data."
+      },
+      "step2": {
+        "title": "Pick an action",
+        "desc": "Format, validate, minify, diff, repair, or convert — all in one click."
+      },
+      "step3": {
+        "title": "Copy the result",
+        "desc": "Results appear instantly on the right. Copy or download and you're done."
+      }
+    },
+    "faq": {
+      "items": [
+        {
+          "q": "Is my data safe?",
+          "a": "Completely safe. All processing happens in your browser — your JSON is never uploaded to any server."
+        },
+        {
+          "q": "How large a JSON file can I handle?",
+          "a": "Multi-megabyte JSON works fine. Heavy parsing runs in a Web Worker so the UI never freezes."
+        },
+        {
+          "q": "Do I need to sign up or pay?",
+          "a": "No. Parsy is completely free, open source, and requires no sign-up or limits."
+        },
+        {
+          "q": "Which languages can I generate?",
+          "a": "Currently TypeScript, Go, and Java. More languages (Kotlin, Swift, Rust, and more) are coming soon."
+        }
+      ]
+    },
+    "footerCta": {
+      "title": "Ready to work with your JSON?",
+      "subtitle": "Free, private, no sign-up. Start now.",
+      "button": "Get started"
     },
     "pillars": {
       "fast": {
