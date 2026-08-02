@@ -8,6 +8,7 @@
  *   - formatJSON(json, options?) — pretty-print
  *   - minifyJSON(json)           — compact
  *   - validateJSON(json)         — syntax check with line/column
+ *   - repairJSON(json)           — fix lenient/loose JSON into valid JSON
  *   - offsetToLineColumn(...)    — position helpers
  *   - types: FormatResult, ValidationResult, JsonError, ...
  */
@@ -15,6 +16,7 @@
 export { formatJSON } from "./formatter";
 export { minifyJSON } from "./minify";
 export { validateJSON } from "./validator";
+export { repairJSON } from "./repair";
 export { extractPosition, offsetToLineColumn, toJsonError } from "./errors";
 
 export type {

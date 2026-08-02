@@ -51,7 +51,8 @@
     },
     "json-repair": {
       "title": "JSON 修复",
-      "description": "修复单引号、多余逗号、注释等不规范 JSON。即将上线。"
+      "short": "修复",
+      "description": "自动修复单引号、多余逗号、注释、缺少引号等不规范 JSON，输出合法 JSON。"
     },
     "json-converter": {
       "title": "JSON 转代码",
@@ -180,6 +181,7 @@
     "missing_colon": "属性名后缺少 ':'——缺少冒号。",
     "control_char": "字符串内有非法控制字符——可能是未转义的换行/制表符？",
     "unquoted_key": "属性名必须用双引号包裹。",
+    "repair_failed": "无法自动修复——输入存在 jsonrepair 也无法处理的结构问题。",
     "empty": "输入为空。",
     "unknown": "JSON 无效。"
   },
@@ -207,7 +209,24 @@
     "diff": {
       "title": "JSON 对比 —— 在线对比两份 JSON 的差异",
       "description": "并排对比两份 JSON，实时高亮新增、删除与修改。支持字符级差异、行内高亮。100% 在浏览器中。"
+    },
+    "repair": {
+      "title": "JSON 修复 —— 在线修复不规范的 JSON",
+      "description": "自动修复单引号、多余逗号、注释、缺少引号等不规范 JSON。100% 在浏览器中——你的数据永不离开。"
     }
+  },
+  "repair": {
+    "repair": "修复",
+    "repaired": "修复成功",
+    "repairFailed": "修复失败",
+    "fixedHint": "已自动修复 {count} 处问题",
+    "sample": "示例",
+    "clear": "清空",
+    "copy": "复制",
+    "copied": "已复制！",
+    "download": "下载",
+    "input": "输入",
+    "output": "修复结果"
   },
   "diff": {
     "original": "原始 JSON",

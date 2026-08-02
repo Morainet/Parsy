@@ -15,6 +15,7 @@ import {
   formatJSON,
   minifyJSON,
   validateJSON,
+  repairJSON,
   type FormatPayload,
   type FormatResult,
   type TextPayload,
@@ -42,6 +43,11 @@ self.onmessage = (event: MessageEvent<WorkerRequest>) => {
     case "validate": {
       const { json } = payload as TextPayload;
       result = validateJSON(json) as ValidationResult;
+      break;
+    }
+    case "repair": {
+      const { json } = payload as TextPayload;
+      result = repairJSON(json) as FormatResult;
       break;
     }
     default: {

@@ -37,6 +37,7 @@ export type JsonErrorCode =
   | "missing_colon"
   | "control_char"
   | "unquoted_key"
+  | "repair_failed"
   | "empty"
   | "unknown";
 
@@ -74,7 +75,7 @@ export interface FormatOptions {
 }
 
 /** Operation discriminant used by the Web Worker bridge. */
-export type JsonOp = "format" | "minify" | "validate";
+export type JsonOp = "format" | "minify" | "validate" | "repair";
 
 /** Request message sent to the JSON Web Worker. */
 export interface WorkerRequest<P = unknown> {

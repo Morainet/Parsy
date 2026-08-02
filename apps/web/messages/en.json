@@ -51,7 +51,8 @@
     },
     "json-repair": {
       "title": "JSON Repair",
-      "description": "Fix single quotes, trailing commas, comments, and other loose JSON. Coming soon."
+      "short": "Repair",
+      "description": "Automatically fix single quotes, trailing commas, comments, unquoted keys, and other loose JSON into valid JSON."
     },
     "json-converter": {
       "title": "JSON to Code",
@@ -180,6 +181,7 @@
     "missing_colon": "Expected ':' after a property name — a colon is missing.",
     "control_char": "Invalid control character inside a string — unescaped newline/tab?",
     "unquoted_key": "Property names must be wrapped in double quotes.",
+    "repair_failed": "Could not repair automatically — the input has structural issues jsonrepair can't resolve.",
     "empty": "Input is empty.",
     "unknown": "Invalid JSON."
   },
@@ -207,7 +209,24 @@
     "diff": {
       "title": "JSON Diff — Compare Two JSON Documents Online",
       "description": "Compare two JSON documents side by side with live highlighting of added, removed, and changed lines. Character-level diffs. 100% in your browser."
+    },
+    "repair": {
+      "title": "JSON Repair — Fix Invalid JSON Online",
+      "description": "Automatically fix single quotes, trailing commas, comments, unquoted keys, and other loose JSON. 100% in your browser."
     }
+  },
+  "repair": {
+    "repair": "Repair",
+    "repaired": "Repaired successfully",
+    "repairFailed": "Repair failed",
+    "fixedHint": "Fixed {count} issue(s)",
+    "sample": "Sample",
+    "clear": "Clear",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "input": "Input",
+    "output": "Repaired"
   },
   "diff": {
     "original": "Original JSON",

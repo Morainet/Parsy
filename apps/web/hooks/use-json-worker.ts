@@ -5,6 +5,7 @@ import {
   formatJSON,
   minifyJSON,
   validateJSON,
+  repairJSON,
   type FormatPayload,
   type FormatResult,
   type JsonOp,
@@ -122,6 +123,9 @@ export function useJsonWorker() {
         case "validate": {
           return validateJSON((payload as TextPayload).json) as OpResult<T>;
         }
+        case "repair": {
+          return repairJSON((payload as TextPayload).json) as OpResult<T>;
+        }
         default: {
           const exhaustive: never = op;
           throw new Error(`Unknown operation: ${String(exhaustive)}`);
@@ -139,7 +143,8 @@ export function useJsonWorker() {
   const process = useCallback(
     async <T extends JsonOp>(
       op: T,
-      payload: T extends "validate" ? TextPayload : FormatPayload,
+      // validate/repair take a bare {json}; format takes {json, indent}.
+      payload: T extends "validate" | "repair" ? TextPayload : FormatPayload,
     ): Promise<OpResult<T>> => {
       const worker = ensureWorker();
 
