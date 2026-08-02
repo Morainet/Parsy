@@ -56,7 +56,8 @@
     },
     "json-converter": {
       "title": "JSON 转代码",
-      "description": "从 JSON 生成 TypeScript、Java、Kotlin、Go 等。即将上线。"
+      "short": "转代码",
+      "description": "从 JSON 自动推断并生成 TypeScript、Go、Java 的类型定义，支持嵌套对象与数组。"
     }
   },
   "home": {
@@ -213,7 +214,30 @@
     "repair": {
       "title": "JSON 修复 —— 在线修复不规范的 JSON",
       "description": "自动修复单引号、多余逗号、注释、缺少引号等不规范 JSON。100% 在浏览器中——你的数据永不离开。"
+    },
+    "converter": {
+      "title": "JSON 转代码 —— 在线生成 TypeScript/Go/Java 类型定义",
+      "description": "从 JSON 自动推断类型并生成 TypeScript、Go、Java 代码。支持嵌套对象、数组、可选字段。100% 在浏览器中。"
     }
+  },
+  "converter": {
+    "input": "JSON 输入",
+    "output": "生成代码",
+    "language": "目标语言",
+    "rootName": "根类型名",
+    "convert": "转换",
+    "converted": "转换成功",
+    "convertFailed": "转换失败",
+    "sample": "示例",
+    "clear": "清空",
+    "copy": "复制",
+    "copied": "已复制！",
+    "download": "下载",
+    "placeholder": "转换后的代码显示在这里",
+    "placeholderHint": "在左侧粘贴 JSON，选择目标语言，点击转换。",
+    "typescript": "TypeScript",
+    "go": "Go",
+    "java": "Java"
   },
   "repair": {
     "repair": "修复",

@@ -56,7 +56,8 @@
     },
     "json-converter": {
       "title": "JSON to Code",
-      "description": "Generate TypeScript, Java, Kotlin, Go, and more from JSON. Coming soon."
+      "short": "To Code",
+      "description": "Infer and generate TypeScript, Go, and Java type definitions from JSON. Handles nested objects and arrays."
     }
   },
   "home": {
@@ -213,7 +214,30 @@
     "repair": {
       "title": "JSON Repair — Fix Invalid JSON Online",
       "description": "Automatically fix single quotes, trailing commas, comments, unquoted keys, and other loose JSON. 100% in your browser."
+    },
+    "converter": {
+      "title": "JSON to Code — Generate TypeScript/Go/Java Types Online",
+      "description": "Infer types and generate TypeScript, Go, and Java code from JSON. Supports nested objects, arrays, and optional fields. 100% in your browser."
     }
+  },
+  "converter": {
+    "input": "JSON input",
+    "output": "Generated code",
+    "language": "Target language",
+    "rootName": "Root type name",
+    "convert": "Convert",
+    "converted": "Converted successfully",
+    "convertFailed": "Conversion failed",
+    "sample": "Sample",
+    "clear": "Clear",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "placeholder": "Generated code appears here",
+    "placeholderHint": "Paste JSON on the left, pick a language, and hit Convert.",
+    "typescript": "TypeScript",
+    "go": "Go",
+    "java": "Java"
   },
   "repair": {
     "repair": "Repair",

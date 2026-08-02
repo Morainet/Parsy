@@ -38,7 +38,7 @@ export const TOOLS: readonly ToolEntry[] = [
   { slug: "json-tree", href: "/json-tree", icon: "🌳", available: true },
   { slug: "json-diff", href: "/json-diff", icon: "🔍", available: true },
   { slug: "json-repair", href: "/json-repair", icon: "🛠️", available: true },
-  { slug: "json-converter", href: "/json-to-typescript", icon: "💻", available: false },
+  { slug: "json-converter", href: "/json-converter", icon: "💻", available: true },
 ] as const;
 
 /**
