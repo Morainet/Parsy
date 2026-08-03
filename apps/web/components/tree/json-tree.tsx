@@ -84,6 +84,9 @@ export function JsonTree({ title, description }: JsonTreeProps) {
   const [errorLine, setErrorLine] = React.useState<number | null>(null);
   const [errorColumn, setErrorColumn] = React.useState<number | null>(null);
 
+  // Memoize the node count so it's not recomputed on every render.
+  const nodeCount = React.useMemo(() => (tree ? countNodes(tree) : 0), [tree]);
+
   // Debounced parse + validate on input change.
   const parseTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -174,7 +177,7 @@ export function JsonTree({ title, description }: JsonTreeProps) {
   }
 
   return (
-    <div className="mx-auto flex h-[calc(100svh-4rem)] max-w-[1600px] flex-col px-4 py-5 sm:px-6">
+    <div className="mx-auto flex min-h-[calc(100svh-4rem)] overflow-y-auto md:h-[calc(100svh-4rem)] md:overflow-hidden max-w-[1600px] flex-col px-4 py-5 sm:px-6">
       {/* Header */}
       <div className="mb-4">
         <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">{title}</h1>
@@ -266,7 +269,7 @@ export function JsonTree({ title, description }: JsonTreeProps) {
             </Metric>
             {tree && (
               <Metric label={t("nodes")}>
-                {countNodes(tree).toLocaleString()}
+                {nodeCount.toLocaleString()}
               </Metric>
             )}
             {matchCount > 0 && query && (

@@ -653,41 +653,36 @@ function renderSwiftStruct(
 
 function renderRust(model: TypeModel, rootName: string): string {
   const namer = primeNamer(model, rootName);
-  const lines: string[] = [
-    "use serde::{Deserialize, Serialize};",
-    "",
-    "#[derive(Debug, Clone, Serialize, Deserialize)]",
-    `pub struct ${rootName} {`,
-  ];
+  const lines: string[] = ["use serde::{Deserialize, Serialize};", ""];
 
-  if (model.root.kind === "object") {
-    for (const fk of model.root.fieldOrder) {
-      const field = model.root.fields.get(fk)!;
-      const optional = field.kind === "primitive" && field.types.has("null");
-      const type = typeNameOf(field, "rust", namer);
-      const rustKey = toSnakeCase(fk);
-      lines.push(
-        `    pub ${rustKey}: ${optional ? `Option<${type}>` : type},`,
-      );
-    }
-  }
-
+  // Named nested types first (Rust allows forward refs but this is cleaner).
   for (const nt of model.namedTypes) {
-    lines.push("}");
-    lines.push("");
     lines.push("#[derive(Debug, Clone, Serialize, Deserialize)]");
     lines.push(`pub struct ${nt.name} {`);
     for (const fk of nt.object.fieldOrder) {
       const field = nt.object.fields.get(fk)!;
       const optional = field.kind === "primitive" && field.types.has("null");
       const type = typeNameOf(field, "rust", namer);
-      const rustKey = toSnakeCase(fk);
-      lines.push(
-        `    pub ${rustKey}: ${optional ? `Option<${type}>` : type},`,
-      );
+      lines.push(`    pub ${toSnakeCase(fk)}: ${optional ? `Option<${type}>` : type},`);
     }
+    lines.push("}");
+    lines.push("");
   }
-  lines.push("}");
+
+  // Root: struct for objects, type alias for primitives/arrays.
+  if (model.root.kind === "object") {
+    lines.push("#[derive(Debug, Clone, Serialize, Deserialize)]");
+    lines.push(`pub struct ${rootName} {`);
+    for (const fk of model.root.fieldOrder) {
+      const field = model.root.fields.get(fk)!;
+      const optional = field.kind === "primitive" && field.types.has("null");
+      const type = typeNameOf(field, "rust", namer);
+      lines.push(`    pub ${toSnakeCase(fk)}: ${optional ? `Option<${type}>` : type},`);
+    }
+    lines.push("}");
+  } else {
+    lines.push(`pub type ${rootName} = ${typeNameOf(model.root, "rust", namer)};`);
+  }
   return lines.join("\n").trimEnd() + "\n";
 }
 
@@ -703,24 +698,10 @@ function toSnakeCase(key: string): string {
 
 function renderCSharp(model: TypeModel, rootName: string): string {
   const namer = primeNamer(model, rootName);
-  const lines: string[] = [
-    "using System.Collections.Generic;",
-    "",
-    `public class ${rootName}`,
-    "{",
-  ];
+  const lines: string[] = ["using System.Collections.Generic;", ""];
 
-  if (model.root.kind === "object") {
-    for (const fk of model.root.fieldOrder) {
-      const field = model.root.fields.get(fk)!;
-      const type = typeNameOf(field, "csharp", namer);
-      lines.push(`    public ${type} ${toPascalCase(fk)} { get; set; }`);
-    }
-  }
-
+  // Nested classes first.
   for (const nt of model.namedTypes) {
-    lines.push("}");
-    lines.push("");
     lines.push(`public class ${nt.name}`);
     lines.push("{");
     for (const fk of nt.object.fieldOrder) {
@@ -728,8 +709,23 @@ function renderCSharp(model: TypeModel, rootName: string): string {
       const type = typeNameOf(field, "csharp", namer);
       lines.push(`    public ${type} ${toPascalCase(fk)} { get; set; }`);
     }
+    lines.push("}");
+    lines.push("");
   }
-  lines.push("}");
+
+  // Root: class for objects, using alias for primitives/arrays.
+  if (model.root.kind === "object") {
+    lines.push(`public class ${rootName}`);
+    lines.push("{");
+    for (const fk of model.root.fieldOrder) {
+      const field = model.root.fields.get(fk)!;
+      const type = typeNameOf(field, "csharp", namer);
+      lines.push(`    public ${type} ${toPascalCase(fk)} { get; set; }`);
+    }
+    lines.push("}");
+  } else {
+    lines.push(`using ${rootName} = ${typeNameOf(model.root, "csharp", namer)};`);
+  }
   return lines.join("\n").trimEnd() + "\n";
 }
 
@@ -748,25 +744,10 @@ function toPascalCase(key: string): string {
 
 function renderDart(model: TypeModel, rootName: string): string {
   const namer = primeNamer(model, rootName);
-  const lines: string[] = [`class ${rootName} {`];
+  const lines: string[] = [];
 
-  if (model.root.kind === "object") {
-    for (const fk of model.root.fieldOrder) {
-      const field = model.root.fields.get(fk)!;
-      const type = typeNameOf(field, "dart", namer);
-      lines.push(`  final ${type} ${dartFieldName(fk)};`);
-    }
-    lines.push("");
-    lines.push(`  ${rootName}({`);
-    for (const fk of model.root.fieldOrder) {
-      lines.push(`    required this.${dartFieldName(fk)},`);
-    }
-    lines.push("  });");
-  }
-
+  // Named types first.
   for (const nt of model.namedTypes) {
-    lines.push("}");
-    lines.push("");
     lines.push(`class ${nt.name} {`);
     for (const fk of nt.object.fieldOrder) {
       const field = nt.object.fields.get(fk)!;
@@ -779,8 +760,28 @@ function renderDart(model: TypeModel, rootName: string): string {
       lines.push(`    required this.${dartFieldName(fk)},`);
     }
     lines.push("  });");
+    lines.push("}");
+    lines.push("");
   }
-  lines.push("}");
+
+  // Root: class for objects, typedef for primitives/arrays.
+  if (model.root.kind === "object") {
+    lines.push(`class ${rootName} {`);
+    for (const fk of model.root.fieldOrder) {
+      const field = model.root.fields.get(fk)!;
+      const type = typeNameOf(field, "dart", namer);
+      lines.push(`  final ${type} ${dartFieldName(fk)};`);
+    }
+    lines.push("");
+    lines.push(`  ${rootName}({`);
+    for (const fk of model.root.fieldOrder) {
+      lines.push(`    required this.${dartFieldName(fk)},`);
+    }
+    lines.push("  });");
+    lines.push("}");
+  } else {
+    lines.push(`typedef ${rootName} = ${typeNameOf(model.root, "dart", namer)};`);
+  }
   return lines.join("\n").trimEnd() + "\n";
 }
 

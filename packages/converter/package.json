@@ -17,6 +17,7 @@
   "scripts": {
     "lint": "echo \"(converter) lint: no-op\"",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run --reporter verbose",
     "clean": "echo \"(converter) nothing to clean\""
   },
   "devDependencies": {

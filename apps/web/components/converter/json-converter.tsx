@@ -138,7 +138,7 @@ export function JsonConverter({ title, description }: JsonConverterProps) {
   const hasOutput = output.length > 0;
 
   return (
-    <div className="mx-auto flex h-[calc(100svh-4rem)] max-w-[1600px] flex-col px-4 py-5 sm:px-6">
+    <div className="mx-auto flex min-h-[calc(100svh-4rem)] overflow-y-auto md:h-[calc(100svh-4rem)] md:overflow-hidden max-w-[1600px] flex-col px-4 py-5 sm:px-6">
       {/* Header */}
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>

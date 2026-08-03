@@ -304,9 +304,14 @@
     "clear": "Clear",
     "copy": "Copy",
     "copied": "Copied!",
+    "copyFailed": "Copy failed",
     "download": "Download",
+    "downloaded": "Downloaded repaired.json",
     "input": "Input",
-    "output": "Repaired"
+    "output": "Repaired",
+    "idle": "Idle",
+    "emptyTitle": "Repaired JSON appears here",
+    "emptyHint": "Paste broken JSON on the left, then hit Repair to fix single quotes, trailing commas, comments, and more."
   },
   "diff": {
     "original": "Original JSON",

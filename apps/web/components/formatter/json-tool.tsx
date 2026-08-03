@@ -249,7 +249,7 @@ export function JsonTool({ initialMode, title, description }: JsonToolProps) {
     status.state === "invalid" && status.error ? status.error.line : null;
 
   return (
-    <div className="mx-auto flex h-[calc(100svh-4rem)] max-w-[1600px] flex-col px-4 py-5 sm:px-6">
+    <div className="mx-auto flex min-h-[calc(100svh-4rem)] overflow-y-auto md:h-[calc(100svh-4rem)] md:overflow-hidden max-w-[1600px] flex-col px-4 py-5 sm:px-6">
       {/* Header */}
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
@@ -395,8 +395,8 @@ function ModeSwitch({
   ];
   return (
     <div
-      role="tablist"
-      aria-label="Operation mode"
+      role="radiogroup"
+      aria-label={t("format") + " / " + t("minify") + " / " + t("validate")}
       className="inline-flex rounded-xl border border-border bg-muted/60 p-1 text-sm shadow-soft"
     >
       {items.map((it) => {
@@ -404,8 +404,8 @@ function ModeSwitch({
         return (
           <button
             key={it.id}
-            role="tab"
-            aria-selected={active}
+            role="radio"
+            aria-checked={active}
             type="button"
             onClick={() => onChange(it.id)}
             className={cn(

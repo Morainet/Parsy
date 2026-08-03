@@ -94,7 +94,7 @@ export function JsonRepair({ title, description }: JsonRepairProps) {
   const handleCopy = React.useCallback(async () => {
     if (!output) return;
     const ok = await copy(output);
-    toast.success(ok ? t("copied") : "Copy failed");
+    toast.success(ok ? t("copied") : t("copyFailed"));
   }, [output, copy, t]);
 
   const handleDownload = React.useCallback(() => {
@@ -108,7 +108,7 @@ export function JsonRepair({ title, description }: JsonRepairProps) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    toast.success("Downloaded repaired.json");
+    toast.success(t("downloaded"));
   }, [output]);
 
   const handleClear = React.useCallback(() => {
@@ -135,7 +135,7 @@ export function JsonRepair({ title, description }: JsonRepairProps) {
   const processing = repairState === "processing";
 
   return (
-    <div className="mx-auto flex h-[calc(100svh-4rem)] max-w-[1600px] flex-col px-4 py-5 sm:px-6">
+    <div className="mx-auto flex min-h-[calc(100svh-4rem)] overflow-y-auto md:h-[calc(100svh-4rem)] md:overflow-hidden max-w-[1600px] flex-col px-4 py-5 sm:px-6">
       {/* Header */}
       <div className="mb-4">
         <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
@@ -305,7 +305,7 @@ function StatusPill({ state }: { state: "idle" | "processing" | "success" | "err
   }
   return (
     <Badge variant="outline" className="gap-1">
-      Idle
+      {t("idle")}
     </Badge>
   );
 }
@@ -318,6 +318,7 @@ function EmptyState({
   errorLine: number | null;
 }) {
   const tErrors = useTranslations("errors");
+  const t = useTranslations("repair");
   if (state === "error") {
     return (
       <div className="flex h-full flex-col items-center justify-center gap-3 px-6 text-center animate-scale-in">
@@ -339,7 +340,7 @@ function EmptyState({
         <div className="grid h-14 w-14 place-items-center rounded-2xl bg-success/10 text-success">
           <CircleCheck className="h-7 w-7" />
         </div>
-        <p className="font-medium text-foreground">Repaired</p>
+        <p className="font-medium text-foreground">{t("repaired")}</p>
       </div>
     );
   }
@@ -348,11 +349,8 @@ function EmptyState({
       <div className="grid h-14 w-14 place-items-center rounded-2xl bg-muted text-muted-foreground/70">
         <FileText className="h-7 w-7" />
       </div>
-      <p className="font-medium">Repaired JSON appears here</p>
-      <p className="max-w-xs text-xs">
-        Paste broken JSON on the left, then hit Repair to fix single quotes,
-        trailing commas, comments, and more.
-      </p>
+      <p className="font-medium">{t("emptyTitle")}</p>
+      <p className="max-w-xs text-xs">{t("emptyHint")}</p>
     </div>
   );
 }

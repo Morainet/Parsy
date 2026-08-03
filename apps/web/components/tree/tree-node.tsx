@@ -57,24 +57,33 @@ interface TreeNodeViewProps {
   node: TreeNode;
   /** True for non-root nodes (affects indentation + key display). */
   isRoot?: boolean;
+  /** Depth from root (for aria-level). Root's children are depth 1. */
+  depth?: number;
 }
 
 /**
  * Renders one tree node and (recursively) its children when expanded.
  * Each node row: chevron (containers) + type dot + key + value/size,
  * with hover-revealed copy actions.
+ *
+ * Performance: subscribes to *per-node* booleans (not the whole expanded/matches
+ * Sets) so toggling one node only re-renders that node + its children, not the
+ * entire tree. Wrapped in React.memo for the same reason.
  */
-export function TreeNodeView({ node, isRoot = false }: TreeNodeViewProps) {
+export const TreeNodeView = React.memo(function TreeNodeView({
+  node,
+  isRoot = false,
+  depth = 1,
+}: TreeNodeViewProps) {
   const t = useTranslations("tree");
-  const expanded = useTreeStore((s) => s.expanded);
-  const matches = useTreeStore((s) => s.matches);
+  // Select per-node booleans so only affected nodes re-render on store changes.
+  const isOpen = useTreeStore((s) => s.expanded.has(node.path));
+  const isMatch = useTreeStore((s) => s.matches.has(node.path));
   const query = useTreeStore((s) => s.query);
   const toggle = useTreeStore((s) => s.toggle);
   const { copy } = useCopy();
 
   const isContainer = node.type === "object" || node.type === "array";
-  const isOpen = expanded.has(node.path);
-  const isMatch = matches.has(node.path);
 
   const handleCopyPath = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -97,7 +106,7 @@ export function TreeNodeView({ node, isRoot = false }: TreeNodeViewProps) {
     <li
       role="treeitem"
       aria-expanded={isContainer ? isOpen : undefined}
-      aria-selected={false}
+      aria-level={depth}
       className="leading-7"
     >
       <div
@@ -192,10 +201,10 @@ export function TreeNodeView({ node, isRoot = false }: TreeNodeViewProps) {
       {isContainer && isOpen && node.children && node.children.length > 0 && (
         <ul role="group" className="ml-4 border-l border-border/60 pl-2">
           {node.children.map((child) => (
-            <TreeNodeView key={child.path} node={child} />
+            <TreeNodeView key={child.path} node={child} depth={depth + 1} />
           ))}
         </ul>
       )}
     </li>
   );
-}
+});

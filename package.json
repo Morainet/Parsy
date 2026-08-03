@@ -13,11 +13,13 @@
     "build": "turbo build",
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
+    "test": "turbo test",
     "clean": "turbo clean && rimraf node_modules"
   },
   "devDependencies": {
+    "rimraf": "^6.0.0",
     "turbo": "^2.5.0",
     "typescript": "^5.7.0",
-    "rimraf": "^6.0.0"
+    "vitest": "^4.1.10"
   }
 }

@@ -19,6 +19,7 @@
   "scripts": {
     "lint": "echo \"(json-core) lint: no-op\"",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run --reporter verbose",
     "clean": "echo \"(json-core) nothing to clean\""
   },
   "devDependencies": {

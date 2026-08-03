@@ -40,13 +40,3 @@ export const TOOLS: readonly ToolEntry[] = [
   { slug: "json-repair", href: "/json-repair", icon: "🛠️", available: true },
   { slug: "json-converter", href: "/json-converter", icon: "💻", available: true },
 ] as const;
-
-/**
- * Default site base URL. The web app reads `NEXT_PUBLIC_SITE_URL` at build
- * time (Next.js inlines it); this constant is the fallback used by shared
- * helpers that run outside the Next bundler.
- *
- * Kept free of any `process`/`@types/node` dependency so the package stays
- * framework-agnostic and type-checks on its own.
- */
-export const SITE_URL = "http://localhost:3000";
