@@ -142,8 +142,11 @@ export function JsonConverter({ title, description }: JsonConverterProps) {
       {/* Header */}
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
+          <h1 className="flex items-center gap-2 text-xl font-semibold tracking-tight sm:text-2xl">
             {title}
+            <kbd className="hidden shrink-0 items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-normal text-muted-foreground sm:inline-flex">
+              <span className="text-xs">⌘</span>Enter
+            </kbd>
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">{description}</p>
         </div>

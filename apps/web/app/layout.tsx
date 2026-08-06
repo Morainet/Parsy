@@ -1,18 +1,22 @@
 import "./globals.css";
 
 /**
- * Root layout — intentionally minimal.
+ * Root layout.
  *
- * With next-intl's `[locale]` routing, the `<html>`/`<body>` tags (which need
- * the dynamic `lang` attribute) live in `app/[locale]/layout.tsx`, where the
- * locale param is in scope. This root layout just passes children through so
- * the locale layout can own the document shell.
+ * With next-intl's `[locale]` routing, the full `<html lang>` / `<body>` tags
+ * with fonts and providers live in `app/[locale]/layout.tsx`. However, Next.js
+ * requires the root layout to produce a valid HTML document — so we provide
+ * a minimal `<html>/<body>` shell here. When the `[locale]` layout renders
+ * (the normal case), it overrides these tags with the localized versions.
  *
- * We still import the global stylesheet here so it applies regardless of
- * which layout renders first.
+ * The global stylesheet is imported here so it applies in all cases.
  */
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return children;
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className="font-sans antialiased">{children}</body>
+    </html>
+  );
 }

@@ -138,8 +138,11 @@ export function JsonRepair({ title, description }: JsonRepairProps) {
     <div className="mx-auto flex min-h-[calc(100svh-4rem)] overflow-y-auto md:h-[calc(100svh-4rem)] md:overflow-hidden max-w-[1600px] flex-col px-4 py-5 sm:px-6">
       {/* Header */}
       <div className="mb-4">
-        <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
+        <h1 className="flex items-center gap-2 text-xl font-semibold tracking-tight sm:text-2xl">
           {title}
+          <kbd className="hidden shrink-0 items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-normal text-muted-foreground sm:inline-flex">
+            <span className="text-xs">⌘</span>Enter
+          </kbd>
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">{description}</p>
       </div>
